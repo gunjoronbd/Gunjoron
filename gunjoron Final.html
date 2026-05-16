@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>গুঞ্জরণ | GUNJORON</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B3070;--red:#D42B2B;--teal:#2878A8;--gold:#f0c040;
+    --light:#f5f7fa;--dark:#111827;--gray:#6b7280;
+    --navy2:#0d1f4a;--teal2:#1a5f8a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Hind Siliguri',sans-serif;color:var(--dark);background:#fff;}
+
+  /* ── NAVBAR ── */
+  nav{position:fixed;top:0;width:100%;z-index:1000;
+    background:linear-gradient(90deg,rgba(10,18,60,0.98) 0%,rgba(20,35,90,0.98) 100%);
+    backdrop-filter:blur(14px);padding:8px 4%;
+    display:flex;align-items:center;justify-content:space-between;
+    box-shadow:0 2px 24px rgba(0,0,0,0.45),0 1px 0 rgba(40,120,168,0.3);}
+  .nav-logo img{height:48px;object-fit:contain;display:block;border-radius:4px;}
+  .nav-links{display:flex;gap:6px;list-style:none;}
+  .nav-links a{color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;
+    padding:7px 13px;border-radius:8px;
+    background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);
+    transition:all 0.22s;letter-spacing:0.2px;white-space:nowrap;}
+  .nav-links a:hover{background:var(--red);border-color:var(--red);
+    transform:translateY(-2px);box-shadow:0 4px 14px rgba(212,43,43,0.5);}
+  .nav-cta{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
+    padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;
+    font-size:0.82rem;border:none;transition:all 0.22s;white-space:nowrap;
+    box-shadow:0 2px 10px rgba(212,43,43,0.4);}
+  .nav-cta:hover{background:linear-gradient(135deg,#b81f1f,#8a1010);transform:translateY(-2px);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;
+    background:none;border:none;padding:4px;}
+  .hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;display:block;}
+  nav.open .nav-links{display:flex;flex-direction:column;position:absolute;
+    top:100%;left:0;right:0;
+    background:linear-gradient(180deg,#0a123c,#0d1f4a);
+    padding:12px 4%;gap:6px;}
+  nav.open .nav-cta{display:block;width:fit-content;margin:0 4% 12px;}
+
+  /* ── TICKER ── */
+  .ticker-outer{margin-top:64px;position:relative;overflow:hidden;}
+  .ticker-bg{background:linear-gradient(90deg,#06102b 0%,#0f1f5a 40%,#06102b 100%);
+    border-top:2px solid var(--red);border-bottom:2px solid var(--teal);
+    padding:0;display:flex;align-items:stretch;}
+  .ticker-badge{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
+    padding:0 18px;display:flex;align-items:center;gap:7px;font-size:0.72rem;
+    font-weight:800;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;
+    flex-shrink:0;position:relative;z-index:2;box-shadow:6px 0 18px rgba(0,0,0,0.4);}
+  .ticker-badge::after{content:'';position:absolute;right:-10px;top:0;bottom:0;
+    width:10px;background:linear-gradient(90deg,#a01818,transparent);}
+  .ticker-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);
+    animation:pulse 1.2s ease-in-out infinite;}
+  .ticker-scroll{overflow:hidden;flex:1;padding:0 20px;display:flex;align-items:center;height:42px;}
+  .ticker-track{display:flex;gap:0;animation:tickerMove 45s linear infinite;white-space:nowrap;}
+  .ticker-item{color:rgba(255,255,255,0.92);font-size:0.83rem;font-weight:500;
+    padding:0 36px;border-right:1px solid rgba(255,255,255,0.18);letter-spacing:0.2px;}
+  .ticker-item::before{content:'✦ ';color:var(--gold);}
+  .ticker-glow{position:absolute;right:0;top:0;bottom:0;width:60px;
+    background:linear-gradient(90deg,transparent,#06102b);pointer-events:none;z-index:1;}
+
+  /* ── HERO ── */
+  .hero{min-height:100vh;
+    background:linear-gradient(160deg,#06102b 0%,#0d1f4a 45%,#1B3070 100%);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:80px 5% 60px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 40%,rgba(40,120,168,0.22) 0%,transparent 65%);}
+  .hero::after{content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 20% 80%,rgba(212,43,43,0.08) 0%,transparent 55%);}
+  .hero-content{position:relative;z-index:1;max-width:680px;}
+  .hero-logo-img{width:260px;max-width:80vw;margin-bottom:36px;
+    filter:drop-shadow(0 12px 40px rgba(0,0,0,0.65));animation:floatUp 1s ease both;}
+  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+    animation:fadeIn 1s 0.4s ease both;}
+  .btn-primary{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
+    padding:14px 30px;border-radius:10px;text-decoration:none;font-weight:700;
+    font-size:0.95rem;transition:all 0.3s;
+    box-shadow:0 4px 22px rgba(212,43,43,0.45);}
+  .btn-primary:hover{background:linear-gradient(135deg,#b81f1f,#8a1010);transform:translateY(-3px);
+    box-shadow:0 8px 28px rgba(212,43,43,0.55);}
+  .btn-outline{border:2px solid rgba(255,255,255,0.35);color:#fff;padding:14px 30px;
+    border-radius:10px;text-decoration:none;font-weight:700;font-size:0.95rem;transition:all 0.3s;}
+  .btn-outline:hover{border-color:var(--teal);background:rgba(40,120,168,0.15);}
+  .hero-stats{display:flex;gap:16px;justify-content:center;margin-top:52px;
+    flex-wrap:wrap;animation:fadeIn 1s 0.7s ease both;}
+  .stat{text-align:center;padding:14px 18px;
+    background:linear-gradient(135deg,rgba(255,255,255,0.07),rgba(40,120,168,0.1));
+    border:1px solid rgba(255,255,255,0.12);border-radius:12px;min-width:100px;
+    backdrop-filter:blur(6px);}
+  .stat-num{font-size:1.6rem;font-weight:700;
+    background:linear-gradient(135deg,#fff,var(--teal));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .stat-label{font-size:0.72rem;color:rgba(255,255,255,0.6);margin-top:3px;}
+
+  /* ── SECTIONS ── */
+  section{padding:78px 5%;}
+  .section-header{text-align:center;margin-bottom:50px;}
+  .section-tag{display:inline-block;background:linear-gradient(135deg,rgba(212,43,43,0.12),rgba(40,120,168,0.08));
+    color:var(--red);font-size:0.7rem;font-weight:700;letter-spacing:2px;
+    text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:12px;
+    border:1px solid rgba(212,43,43,0.2);}
+  .section-title{font-size:1.85rem;font-weight:700;color:var(--navy);
+    font-family:'Noto Serif Bengali',serif;}
+  .section-title span{background:linear-gradient(135deg,var(--teal),var(--navy2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .section-line{width:50px;height:4px;
+    background:linear-gradient(90deg,var(--red),var(--teal));
+    border-radius:2px;margin:15px auto 0;}
+
+  /* ── SECTORS ── */
+  .sectors{background:linear-gradient(160deg,#f5f7fa 0%,#edf1f8 100%);}
+  .sectors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+  .sector-card{background:#fff;border-radius:18px;padding:32px 22px;text-align:center;
+    box-shadow:0 4px 18px rgba(27,48,112,0.08);transition:all 0.3s;cursor:pointer;
+    border-top:4px solid transparent;
+    background:linear-gradient(180deg,#fff 0%,#fafbff 100%);}
+  .sector-card:hover{transform:translateY(-8px);
+    box-shadow:0 18px 38px rgba(27,48,112,0.16);border-top-color:var(--red);}
+  .sector-icon{font-size:2.5rem;margin-bottom:14px;display:block;}
+  .sector-card h3{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:7px;
+    font-family:'Noto Serif Bengali',serif;}
+  .sector-card h3 span{display:block;font-size:0.73rem;
+    background:linear-gradient(90deg,var(--teal),var(--navy2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    font-family:'Hind Siliguri',sans-serif;margin-top:3px;}
+  .sector-card p{font-size:0.84rem;color:var(--gray);line-height:1.7;}
+  .sector-badge{display:inline-block;margin-top:13px;
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:#fff;padding:5px 13px;border-radius:20px;font-size:0.68rem;transition:0.3s;}
+  .sector-card:hover .sector-badge{background:linear-gradient(135deg,var(--red),#a01818);}
+
+  /* ── CONTENT ── */
+  .featured{background:#fff;}
+  .tabs{display:flex;justify-content:center;gap:8px;margin-bottom:38px;flex-wrap:wrap;}
+  .tab-btn{padding:9px 20px;border-radius:9px;border:2px solid #e5e7eb;background:#fff;
+    cursor:pointer;font-size:0.84rem;font-weight:600;color:var(--gray);
+    font-family:'Hind Siliguri',sans-serif;transition:all 0.22s;}
+  .tab-btn.active,.tab-btn:hover{
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    border-color:var(--navy);color:#fff;}
+  .tab-content{display:none;}
+  .tab-content.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+  .yt-card{border-radius:14px;overflow:hidden;
+    box-shadow:0 4px 16px rgba(0,0,0,0.08);transition:0.3s;background:#fff;}
+  .yt-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(27,48,112,0.14);}
+  .yt-card iframe{width:100%;aspect-ratio:16/9;display:block;border:none;}
+  .yt-card-info{padding:12px 14px;
+    background:linear-gradient(135deg,#fafbff,#f5f7fa);}
+  .yt-card-info h4{font-size:0.9rem;font-weight:700;color:var(--navy);}
+  .yt-card-info p{font-size:0.76rem;color:var(--gray);margin-top:3px;}
+  .more-card{display:flex;align-items:center;justify-content:center;
+    min-height:200px;border-radius:14px;cursor:pointer;transition:0.3s;}
+  .more-card:hover{transform:translateY(-4px);filter:brightness(1.08);}
+  .more-card-inner{text-align:center;color:#fff;padding:22px;}
+  .more-card-inner .icon{font-size:2.5rem;margin-bottom:9px;}
+  .more-card-inner h4{font-size:0.95rem;margin-bottom:5px;}
+  .more-card-inner p{font-size:0.78rem;opacity:0.8;}
+
+  /* ── ABOUT ── */
+  .about{background:linear-gradient(135deg,#06102b 0%,var(--navy) 50%,#0d1f4a 100%);color:#fff;
+    position:relative;overflow:hidden;}
+  .about::before{content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 80% 20%,rgba(40,120,168,0.15) 0%,transparent 60%);}
+  .about .section-title{color:#fff;}
+  .about .section-tag{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);
+    border-color:rgba(255,255,255,0.2);}
+  .about-body{max-width:840px;margin:0 auto;position:relative;}
+  .about-intro{font-size:0.97rem;line-height:2;color:rgba(255,255,255,0.82);margin-bottom:22px;}
+  .about-intro strong{color:#fff;}
+  .about-work{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+    border-radius:16px;padding:26px 30px;margin-bottom:22px;
+    backdrop-filter:blur(8px);}
+  .about-work h4{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:13px;}
+  .about-work ul{list-style:none;display:flex;flex-wrap:wrap;gap:9px;}
+  .about-work ul li{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+    padding:6px 15px;border-radius:20px;font-size:0.84rem;color:rgba(255,255,255,0.85);}
+  .about-work ul li::before{content:'• ';color:var(--gold);}
+  .about-closing{font-size:0.93rem;line-height:2;color:rgba(255,255,255,0.75);
+    border-left:4px solid var(--teal);padding:16px 20px;
+    background:rgba(40,120,168,0.1);border-radius:0 12px 12px 0;}
+
+  /* ── TEAM ── */
+  .team{background:linear-gradient(160deg,#f5f7fa 0%,#edf1f8 100%);}
+  .team-category{margin-bottom:44px;}
+  .team-cat-title{display:flex;align-items:center;gap:11px;margin-bottom:18px;}
+  .team-cat-title h3{font-size:1.05rem;font-weight:700;color:var(--navy);
+    white-space:nowrap;font-family:'Noto Serif Bengali',serif;}
+  .team-cat-sub{font-size:0.72rem;color:var(--gray);font-weight:400;
+    font-family:'Hind Siliguri',sans-serif;}
+  .team-cat-line{flex:1;height:2px;
+    background:linear-gradient(90deg,var(--teal),rgba(40,120,168,0.1));}
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;}
+  .team-card{background:linear-gradient(180deg,#fff 0%,#fafbff 100%);border-radius:16px;
+    padding:20px 14px;text-align:center;
+    box-shadow:0 3px 12px rgba(27,48,112,0.08);transition:0.3s;}
+  .team-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(27,48,112,0.16);}
+  .team-photo{width:80px;height:80px;border-radius:50%;margin:0 auto 13px;
+    overflow:hidden;border:3px solid var(--teal);background:#e5e7eb;
+    display:flex;align-items:center;justify-content:center;}
+  .team-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .team-photo .fallback{font-size:2rem;}
+  .team-card h4{font-size:0.84rem;font-weight:700;color:var(--navy);line-height:1.4;}
+  .team-card p{font-size:0.7rem;color:var(--teal);font-weight:600;margin-top:4px;line-height:1.4;}
+
+  /* ── CONTACT ── */
+  .contact{background:linear-gradient(160deg,#fff 0%,#f8f9ff 100%);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .contact-info h3{font-size:1.35rem;font-weight:700;color:var(--navy);
+    margin-bottom:13px;font-family:'Noto Serif Bengali',serif;}
+  .contact-info>p{color:var(--gray);line-height:1.8;margin-bottom:24px;font-size:0.92rem;}
+  .contact-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:17px;}
+  .contact-icon{width:40px;height:40px;border-radius:10px;display:flex;
+    align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;}
+  .ci-navy{background:linear-gradient(135deg,rgba(27,48,112,0.12),rgba(27,48,112,0.06));}
+  .ci-red{background:linear-gradient(135deg,rgba(212,43,43,0.12),rgba(212,43,43,0.06));}
+  .ci-teal{background:linear-gradient(135deg,rgba(40,120,168,0.12),rgba(40,120,168,0.06));}
+  .contact-item-text h5{font-weight:600;color:var(--navy);margin-bottom:2px;font-size:0.88rem;}
+  .contact-item-text p{color:var(--gray);font-size:0.83rem;margin:0;}
+  .social-links{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;}
+  .social-btn{padding:8px 13px;border-radius:9px;display:flex;align-items:center;
+    gap:6px;text-decoration:none;font-size:0.73rem;font-weight:700;color:#fff;transition:0.3s;}
+  .social-btn:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,0.2);}
+  .s-fb{background:linear-gradient(135deg,#1877F2,#0d5dbf);}
+  .s-yt{background:linear-gradient(135deg,#FF0000,#b80000);}
+  .s-gr{background:linear-gradient(135deg,#1a5c2e,#0e3a1c);}
+  .s-pu{background:linear-gradient(135deg,#6b2fa0,#4a1f6e);}
+  .contact-form{background:linear-gradient(160deg,#f5f7fa,#edf1f8);
+    border-radius:18px;padding:30px;border:1px solid rgba(27,48,112,0.08);}
+  .form-group{margin-bottom:15px;}
+  .form-group label{display:block;font-weight:600;color:var(--navy);
+    margin-bottom:6px;font-size:0.85rem;}
+  .form-group input,.form-group textarea,.form-group select{
+    width:100%;padding:10px 13px;border-radius:10px;
+    border:2px solid #e5e7eb;font-family:'Hind Siliguri',sans-serif;
+    font-size:0.88rem;color:var(--dark);background:#fff;transition:0.3s;outline:none;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+    border-color:var(--teal);box-shadow:0 0 0 3px rgba(40,120,168,0.1);}
+  .form-group textarea{height:100px;resize:vertical;}
+  .form-submit{width:100%;padding:12px;
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:#fff;border:none;border-radius:10px;font-size:0.93rem;font-weight:700;
+    cursor:pointer;font-family:'Hind Siliguri',sans-serif;transition:0.3s;}
+  .form-submit:hover{background:linear-gradient(135deg,var(--navy2),#081530);
+    transform:translateY(-2px);box-shadow:0 6px 18px rgba(27,48,112,0.3);}
+
+  /* ── FOOTER ── */
+  footer{background:linear-gradient(160deg,#06102b 0%,#0a1840 60%,#06102b 100%);
+    color:rgba(255,255,255,0.5);padding:50px 5% 24px;
+    border-top:2px solid rgba(40,120,168,0.3);}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:38px;}
+  .footer-brand img{height:48px;border-radius:5px;margin-bottom:13px;display:block;}
+  .footer-brand p{font-size:0.78rem;line-height:1.9;color:rgba(255,255,255,0.38);}
+  .footer-col h5{color:#fff;font-weight:700;margin-bottom:15px;font-size:0.88rem;}
+  .footer-col ul{list-style:none;}
+  .footer-col li{margin-bottom:8px;}
+  .footer-col a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:0.8rem;transition:0.3s;}
+  .footer-col a:hover{color:var(--teal);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:18px;
+    display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;}
+  .footer-bottom p{font-size:0.76rem;text-align:center;}
+
+  /* ── SCROLL TOP ── */
+  .scroll-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;
+    background:linear-gradient(135deg,var(--navy),var(--teal));
+    color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.3);transition:0.3s;
+    z-index:999;font-size:1rem;opacity:0;pointer-events:none;}
+  .scroll-top.visible{opacity:1;pointer-events:all;}
+  .scroll-top:hover{background:linear-gradient(135deg,var(--teal),var(--navy));}
+
+  /* ── ANIMATIONS ── */
+  @keyframes floatUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+
+  /* ── MOBILE ── */
+  @media(max-width:768px){
+    .nav-links,.nav-cta{display:none;}
+    .hamburger{display:flex;}
+    .hero-logo-img{width:180px;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    section{padding:58px 5%;}
+    .section-title{font-size:1.45rem;}
+    .tab-content.active{grid-template-columns:1fr;}
+    .hero-stats{gap:10px;}
+    .stat{padding:10px 13px;min-width:80px;}
+    .team-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1GH3bpQCTCGV4rFQZWeXrI4XIfGU7PfYM" alt="গুঞ্জরণ" onerror="this.onerror=null;this.src='https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/699186887_122302543424018124_7467840352417706762_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Vn_BfbQ5kVAQ7kNvwGN3iGX&_nc_ht=scontent.fdac189-1.fna&oh=00_Af6ijIgAPpD42HCZuf_Sf16zvWfzlIzcqTyLwuQXk_stNQ&oe=6A0DFAE5'">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home">🏠 হোম</a></li>
+    <li><a href="#sectors">📂 সেক্টর</a></li>
+    <li><a href="#content">🎬 কন্টেন্ট</a></li>
+    <li><a href="#about">📖 আমাদের পরিচিতি</a></li>
+    <li><a href="#team">👥 টিম</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">📞 যোগাযোগ</a>
+  <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-outer">
+  <div class="ticker-bg">
+    <div class="ticker-badge">
+      <span class="dot"></span>
+      📢 বিজ্ঞপ্তি
+    </div>
+    <div class="ticker-scroll">
+      <div class="ticker-track">
+        <span class="ticker-item">আসসালামু আলাইকুম। আমরা একটি কল্যাণমূলক ইসলামিক প্রজেক্ট বাস্তবায়ন করছি; আপনার সম্মানিত প্রতিষ্ঠানের স্পন্সরশিপ ও সহযোগিতা কামনা করছি, যাতে দ্বীনের এই খেদমতে আপনারাও সওয়াবের অংশীদার হতে পারেন।</span>
+        <span class="ticker-item">আমাদের সাথে যোগাযোগ করুন — +880 1704 598 772 | gunjoronbd@gmail.com</span>
+        <span class="ticker-item">আসসালামু আলাইকুম। আমরা একটি কল্যাণমূলক ইসলামিক প্রজেক্ট বাস্তবায়ন করছি; আপনার সম্মানিত প্রতিষ্ঠানের স্পন্সরশিপ ও সহযোগিতা কামনা করছি, যাতে দ্বীনের এই খেদমতে আপনারাও সওয়াবের অংশীদার হতে পারেন।</span>
+        <span class="ticker-item">আমাদের সাথে যোগাযোগ করুন — +880 1704 598 772 | gunjoronbd@gmail.com</span>
+      </div>
+    </div>
+    <div class="ticker-glow"></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1GH3bpQCTCGV4rFQZWeXrI4XIfGU7PfYM" class="hero-logo-img" alt="GUNJORON" onerror="this.onerror=null;this.src='https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/699186887_122302543424018124_7467840352417706762_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Vn_BfbQ5kVAQ7kNvwGN3iGX&_nc_ht=scontent.fdac189-1.fna&oh=00_Af6ijIgAPpD42HCZuf_Sf16zvWfzlIzcqTyLwuQXk_stNQ&oe=6A0DFAE5'">
+    <div class="hero-btns" style="margin-top:20px;">
+      <a href="#content" class="btn-primary">🎵 কন্টেন্ট দেখুন</a>
+      <a href="#about" class="btn-outline">📖 আমাদের পরিচিতি</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">৪+</div><div class="stat-label">সেক্টর</div></div>
+      <div class="stat"><div class="stat-num">২০+</div><div class="stat-label">টিম মেম্বার</div></div>
+      <div class="stat"><div class="stat-num">১০০+</div><div class="stat-label">কন্টেন্ট</div></div>
+      <div class="stat"><div class="stat-num">1M+</div><div class="stat-label">দর্শক</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="section-header">
+    <div class="section-tag">আমাদের সেক্টর</div>
+    <h2 class="section-title">গুঞ্জরণের <span>চারটি বিভাগ</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="sectors-grid">
+    <div class="sector-card" onclick="switchTab(0)">
+      <span class="sector-icon">🎵</span>
+      <h3>ইসলামি নাশিদ স্টুডিও<span>NASHEED STUDIO</span></h3>
+      <p>পবিত্র কথা ও সুরের মেলবন্ধনে আত্মার খোরাক জোগাতে আমাদের নাশিদ স্টুডিও নিরলস কাজ করে যাচ্ছে।</p>
+      <span class="sector-badge">এখনই শুনুন →</span>
+    </div>
+    <div class="sector-card" onclick="switchTab(1)">
+      <span class="sector-icon">🎬</span>
+      <h3>ভিডিও প্রোডাকশন<span>VIDEO PRODUCTION</span></h3>
+      <p>ইসলামি নাটক ও শর্টফিল্মের মাধ্যমে সমাজে ইতিবাচক বার্তা ছড়িয়ে দেওয়া আমাদের লক্ষ্য।</p>
+      <span class="sector-badge">দেখুন →</span>
+    </div>
+    <div class="sector-card" onclick="switchTab(2)">
+      <span class="sector-icon">📖</span>
+      <h3>কুরআন তিলাওয়াত<span>QURAN RECITATION</span></h3>
+      <p>বিশুদ্ধ উচ্চারণ ও সুমধুর কণ্ঠে কুরআনুল কারিমের তিলাওয়াত উপভোগ করুন।</p>
+      <span class="sector-badge">তিলাওয়াত শুনুন →</span>
+    </div>
+    <div class="sector-card" onclick="switchTab(3)">
+      <span class="sector-icon">🎙️</span>
+      <h3>ওয়াজ ও নাসিহা<span>WAZ & NASIHAH</span></h3>
+      <p>বিশিষ্ট আলেমদের জ্ঞানগর্ভ ওয়াজ ও ইসলামি জীবনবিধানের উপর নাসিহা শুনুন।</p>
+      <span class="sector-badge">শুনুন →</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="featured" id="content">
+  <div class="section-header">
+    <div class="section-tag">কন্টেন্ট</div>
+    <h2 class="section-title">আমাদের <span>সেরা কন্টেন্ট</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(0)">🎵 নাশিদ</button>
+    <button class="tab-btn" onclick="switchTab(1)">🎬 ফিল্ম</button>
+    <button class="tab-btn" onclick="switchTab(2)">📖 তিলাওয়াত</button>
+    <button class="tab-btn" onclick="switchTab(3)">🎙️ ওয়াজ</button>
+  </div>
+  <div class="tab-content active" id="tab-0">
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/Pb8jy0LUSdo?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe><div class="yt-card-info">      <h4>গুঞ্জরণ নাশিদ</h4><p>গুঞ্জরণ স্টুডিও</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/m85KmyQIBkY?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe><div class="yt-card-info"><h4>গুঞ্জরণ নাশিদ</h4><p>গুঞ্জরণ স্টুডিও</p></div></div>
+    <div class="more-card" style="background:linear-gradient(135deg,var(--navy),var(--teal));" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">▶</div><h4>আরও নাশিদ দেখুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
+  </div>
+  <div class="tab-content" id="tab-1">
+    <div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4>গুঞ্জরণ ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন।</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>
+  </div>
+  <div class="tab-content" id="tab-2">
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/DXMqysCxJX8?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe>    <div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p>গুঞ্জরণ তিলাওয়াত</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/JjeyS553jFs?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe><div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p>গুঞ্জরণ তিলাওয়াত</p></div></div>
+    <div class="more-card" style="background:linear-gradient(135deg,#1a5c2e,#2e9b4e);" onclick="window.open('https://www.youtube.com/@gunjoron-tilawat','_blank')"><div class="more-card-inner"><div class="icon">📖</div><h4>আরও তিলাওয়াত শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
+  </div>
+  <div class="tab-content" id="tab-3">
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/wb9DNp8y6Tw?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe>    <div class="yt-card-info"><h4>ইসলামি ওয়াজ</h4><p>গুঞ্জরণ ওয়াজ</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/i3AL4IpmGoY?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" loading="lazy"></iframe><div class="yt-card-info"><h4>ইসলামি ওয়াজ</h4><p>গুঞ্জরণ ওয়াজ</p></div></div>
+    <div class="more-card" style="background:linear-gradient(135deg,#6b2fa0,#9b4dca);" onclick="window.open('https://www.youtube.com/@gunjoronwaz','_blank')"><div class="more-card-inner"><div class="icon">🎙️</div><h4>আরও ওয়াজ শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-header">
+    <div class="section-tag">আমাদের পরিচিতি</div>
+    <h2 class="section-title" style="color:#fff;">গুঞ্জরণ — <span style="background:linear-gradient(135deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">পরিচিতি</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-body">
+    <p class="about-intro"><strong>গুঞ্জরণ</strong> একটি ইসলামিক সাংস্কৃতিক ও সৃজনশীল মিডিয়া উদ্যোগ। আমাদের উদ্দেশ্য হলো সুস্থ সংস্কৃতির চর্চা, নৈতিক মূল্যবোধের প্রসার এবং ইসলামের সৌন্দর্যময় বার্তাকে আধুনিক ও গ্রহণযোগ্য উপস্থাপনার মাধ্যমে মানুষের কাছে পৌঁছে দেওয়া।</p>
+    <p class="about-intro">বর্তমান সময়ে যখন নানা অপসংস্কৃতি সমাজের চিন্তা ও রুচিকে প্রভাবিত করছে, তখন আমরা বিশ্বাস করি — সুন্দর, শালীন ও অর্থবহ কনটেন্টই হতে পারে ইতিবাচক পরিবর্তনের কার্যকর মাধ্যম। সেই বিশ্বাস থেকেই গুঞ্জরণের পথচলা।</p>
+    <div class="about-work">
+      <h4>আমাদের কাজের পরিধি —</h4>
+      <ul>
+        <li>ইসলামিক নাশিদ</li>
+        <li>ইসলামিক ফিল্ম ও শর্টফিল্ম</li>
+        <li>ওয়াজ ও দ্বীনি আলোচনা</li>
+        <li>কুরআন তিলাওয়াত</li>
+        <li>শিক্ষামূলক ও দাওয়াহভিত্তিক কনটেন্ট</li>
+      </ul>
+    </div>
+    <p class="about-intro">আমরা এমন কনটেন্ট নির্মাণে প্রতিশ্রুতিবদ্ধ, যা শুধু বিনোদনের সীমায় আবদ্ধ নয়; বরং চিন্তার জগতে ইতিবাচক প্রভাব সৃষ্টি করে, হৃদয়ে জাগায় নৈতিকতা ও সৌন্দর্যের অনুভব, এবং ইসলামী মূল্যবোধের প্রতি মানুষকে উদ্বুদ্ধ করে।</p>
+    <p class="about-intro"><strong>গুঞ্জরণ</strong> কেবল একটি প্রতিষ্ঠান নয়; এটি একটি দায়িত্বশীল সাংস্কৃতিক অঙ্গীকার — যার লক্ষ্য সমাজে কল্যাণকর পরিবর্তনের ধ্বনি ছড়িয়ে দেওয়া।</p>
+    <div class="about-closing">এই পথচলায় সকলের দোয়া, সহযোগিতা ও আন্তরিক অংশগ্রহণ আমাদের এগিয়ে চলার প্রেরণা।</div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-header">
+    <div class="section-tag">আমাদের টিম</div>
+    <h2 class="section-title">সম্মানিত <span>সদস্যবৃন্দ</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="team-category">
+    <div class="team-cat-title"><h3>🎵 নাশিদ শিল্পী</h3><div class="team-cat-line"></div></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1bmfgqAP2isPSyKHeFNx61hmvs_HwcG6J" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1Mp1s-YNdZtQ8_RHsmNRWO_N9bWwhxSZt" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>শোয়াইব ইসলাম</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1L_rxRBfYwnOUepauKn-F7Gik9qfg8Iyp" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>মুহাম্মাদ তাহসিন</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1LXIWqxFRDo3cRUeaFNAgS37b3WxpJfxK" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>ওমর ফারুক</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1FD5AFfeVeUmxS4mC0YoGMBw2rA3MawVr" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>আব্দুল্লাহ আওলাদ</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1qPYivchqY2fVXLeus7QcXt5SvIw5_ZyZ" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>আব্দুল মালেক</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=10lo8O4c6pr0XSOTI3sda5pqFN0JP5Nf_" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>আল আমিন</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1a52OwlvoR2Y02K9R5lTv_1hm_Zm5-liG" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>কাউসার মাহমুদ হৃদয়</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1eRNu0VgUbMVMTRtvX-msMvm3AIk0eg1b" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><h4>আব্দুর রহমান</h4><p>নাশিদ শিল্পী</p></div>
+    </div>
+  </div>
+
+  <div class="team-category">
+    <div class="team-cat-title"><h3>🎬 প্রোডাকশন টিম</h3><div class="team-cat-line"></div></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1bmfgqAP2isPSyKHeFNx61hmvs_HwcG6J" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎬</span>'"></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>ডিরেক্টর, ভিডিও এডিটর ও সিনেমাটোগ্রাফার</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1XMjMjnYfjV4Jw1-s---QTgxBEr6jBeat" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>✍️</span>'"></div><h4>মুমিনুল ইসলাম</h4><p>গল্পকার, পোস্টার ডিজাইনার</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1eB7rzbzKKpQUywjKLRNL6SLmVSUNO-dB" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎞️</span>'"></div><h4>মুজাহিদুল ইসলাম</h4><p>সহকারী ভিডিও এডিটর</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1Sk0uH9qnqqHLULtbCSxY4ADznOufR8UT" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🤝</span>'"></div><h4>আব্দুল আজিজ</h4><p>সহকারী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1ofVZ3gcwdHgZ7ZkGP_7SyrHb4iQ4Wopm" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🤝</span>'"></div><h4>আবু হুরায়রা খাঁন</h4><p>সহকারী</p></div>
+    </div>
+  </div>
+
+  <div class="team-category">
+    <div class="team-cat-title"><h3>📖 কারী সাহেবান</h3><div class="team-cat-line"></div></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1bmfgqAP2isPSyKHeFNx61hmvs_HwcG6J" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>কারী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1FD5AFfeVeUmxS4mC0YoGMBw2rA3MawVr" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><h4>আব্দুল্লাহ আওলাদ</h4><p>কারী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1L_rxRBfYwnOUepauKn-F7Gik9qfg8Iyp" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><h4>মুহাম্মাদ তাহসিন</h4><p>কারী</p></div>
+      <div class="team-card"><div class="team-photo"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1OXSOExcETx8tujZniV_uCK54YeBjuu8f" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><h4>মারুফ আহমেদ প্রশ্ন</h4><p>কারী</p></div>
+    </div>
+  </div>
+
+  <div class="team-category">
+    <div class="team-cat-title"><h3>🎙️ আলেম প্যানেল <span class="team-cat-sub">(যাদের ওয়াজ আমরা আপলোড দিয়েছি)</span></h3><div class="team-cat-line"></div></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1AhMJvihNaK_sSYoEHKspBw777gGV9I_S" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><h4>মাওলানা মামুনুল হক</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1uZtvRGu7Xn37iMJPOnjoNc8HJG5VJ0S8" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><h4>মুফতি সাকাওয়াত হুসাইন রাজি</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1f6X6DgaDxxJuhlKcxoHlkU73I-IvoOY0" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><h4>মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1HfNhCQgWpVoBePdGyx_AHr5XqwyIwYNW" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><h4>মুফতি ওয়ালি উল্লাহ</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=13TLOPETlVw75XWLAQePQmntYILa9hSNq" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><h4>মাওলানা ইবরাহিম সুলতান</h4><p style="color:#6b2fa0;">আলেম</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-header">
+    <div class="section-tag">যোগাযোগ করুন</div>
+    <h2 class="section-title">আমাদের সাথে <span>কথা বলুন</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>গুঞ্জরণের সাথে যুক্ত হন</h3>
+      <p>স্টুডিও বুকিং, কন্টেন্ট তৈরি, স্পন্সরশিপ বা যেকোনো বিষয়ে আমাদের সাথে যোগাযোগ করুন।</p>
+      <div class="contact-item"><div class="contact-icon ci-navy">📍</div><div class="contact-item-text"><h5>ঠিকানা</h5><p>বারিধারা, নতুন বাজার, ভাটারা, ঢাকা-১২১২</p></div></div>
+      <div class="contact-item"><div class="contact-icon ci-red">📞</div><div class="contact-item-text"><h5>ফোন নম্বর</h5><p>+880 1704 598 772</p></div></div>
+      <div class="contact-item"><div class="contact-icon ci-teal">✉️</div><div class="contact-item-text"><h5>ইমেইল</h5><p>gunjoronbd@gmail.com</p></div></div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/gonjoron" target="_blank" class="social-btn s-fb">📘 Facebook</a>
+        <a href="https://www.youtube.com/@GunjoronStudio" target="_blank" class="social-btn s-yt">▶ স্টুডিও</a>
+        <a href="https://www.youtube.com/@gunjoron-tilawat" target="_blank" class="social-btn s-gr">📖 তিলাওয়াত</a>
+        <a href="https://www.youtube.com/@gunjoronwaz" target="_blank" class="social-btn s-pu">🎙️ ওয়াজ</a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group"><label>আপনার নাম</label><input type="text" placeholder="পূর্ণ নাম লিখুন"></div>
+      <div class="form-group"><label>ফোন নম্বর</label><input type="tel" placeholder="+880 ×××-×××-××××"></div>
+      <div class="form-group"><label>বিষয়</label>
+        <select>
+          <option>বিষয় নির্বাচন করুন</option>
+          <option>স্পন্সরশিপ ও সহযোগিতা</option>
+          <option>নাশিদ স্টুডিও বুকিং</option>
+          <option>ভিডিও প্রোডাকশন</option>
+          <option>কুরআন তিলাওয়াত</option>
+          <option>ওয়াজ / নাসিহা</option>
+          <option>সাধারণ জিজ্ঞাসা</option>
+        </select>
+      </div>
+      <div class="form-group"><label>বার্তা</label><textarea placeholder="আপনার বার্তা লিখুন..."></textarea></div>
+      <button class="form-submit" onclick="submitForm()">বার্তা পাঠান ✉️</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1GH3bpQCTCGV4rFQZWeXrI4XIfGU7PfYM" alt="গুঞ্জরণ" onerror="this.style.display='none'">
+      <p>অপসংস্কৃতির কালো হাত ভেঙে চূর্ণ-বিচূর্ণ করে, সুস্থ সংস্কৃতির জয় গান ছড়িয়ে দিতে আমরা এগিয়ে চলেছি দৃঢ় প্রত্যয়ে। আমাদের লক্ষ্য — সারা দুনিয়ায় নৈতিকতা, সৌন্দর্য আর ইসলামী মূল্যবোধের আলো ছড়িয়ে দেওয়া। এই মহৎ যাত্রায় আমরা বিশ্বাস করি, আপনিও হবেন আমাদের অটুট সঙ্গী।</p>
+    </div>
+    <div class="footer-col">
+      <h5>সেক্টর</h5>
+      <ul>
+        <li><a href="#sectors">🎵 নাশিদ স্টুডিও</a></li>
+        <li><a href="#sectors">🎬 ভিডিও প্রোডাকশন</a></li>
+        <li><a href="#sectors">📖 কুরআন তিলাওয়াত</a></li>
+        <li><a href="#sectors">🎙️ ওয়াজ ও নাসিহা</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>দ্রুত লিংক</h5>
+      <ul>
+        <li><a href="#home">হোম</a></li>
+        <li><a href="#about">আমাদের পরিচয়</a></li>
+        <li><a href="#team">টিম</a></li>
+        <li><a href="#contact">যোগাযোগ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>সোশ্যাল মিডিয়া</h5>
+      <ul>
+        <li><a href="https://www.facebook.com/gonjoron" target="_blank">📘 Facebook</a></li>
+        <li><a href="https://www.youtube.com/@GunjoronStudio" target="_blank">▶ YouTube স্টুডিও</a></li>
+        <li><a href="https://www.youtube.com/@gunjoron-tilawat" target="_blank">📖 তিলাওয়াত চ্যানেল</a></li>
+        <li><a href="https://www.youtube.com/@gunjoronwaz" target="_blank">🎙️ ওয়াজ চ্যানেল</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© ২০২৬ গুঞ্জরণ (GUNJORON) — সর্বস্বত্ব সংরক্ষিত</p>
+  </div>
+</footer>
+
+<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+  // ── TAB SWITCH — পেজ রিলোড হবে না, scroll নেই ──
+  function switchTab(i){
+    document.querySelectorAll('.tab-content').forEach((t,j)=>t.classList.toggle('active',j===i));
+    document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+  }
+
+  // ── SCROLL TOP BUTTON ──
+  window.addEventListener('scroll',()=>{
+    document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);
+  },{passive:true});
+
+  // ── HAMBURGER MENU ──
+  function toggleNav(){
+    document.getElementById('navbar').classList.toggle('open');
+  }
+  // নেভ লিংকে ক্লিক করলে মেনু বন্ধ হবে
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('navbar').classList.remove('open'));
+  });
+
+  // ── FORM SUBMIT ──
+  function submitForm(){
+    alert('আপনার বার্তা পাঠানো হয়েছে! জাযাকাল্লাহু খাইরান। আমরা শীঘ্রই যোগাযোগ করব।');
+  }
+
+  // ── SCROLL ANIMATION (IntersectionObserver) ──
+  window.addEventListener('load',()=>{const obs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+    }
+  }),{threshold:0.06});
+
+  document.querySelectorAll('.sector-card,.yt-card,.more-card,.team-card').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(24px)';
+    el.style.transition='opacity 0.5s,transform 0.5s';
+    obs.observe(el);
+  });});
+</script>
+</body>
+</html>
