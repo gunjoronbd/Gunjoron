@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ধন্যবাদ | গুঞ্জরণ</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B3070;--red:#D42B2B;--teal:#2878A8;--gold:#f0c040;
+    --navy2:#0d1f4a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Hind Siliguri',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(160deg,#06102b 0%,#0d1f4a 45%,#1B3070 100%);
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;position:relative;overflow:hidden;
+  }
+  body::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 50% 40%,rgba(40,120,168,0.2) 0%,transparent 65%);
+  }
+  body::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 20% 80%,rgba(212,43,43,0.07) 0%,transparent 55%);
+  }
+
+  .card{
+    position:relative;z-index:1;
+    background:linear-gradient(160deg,rgba(255,255,255,0.07),rgba(40,120,168,0.06));
+    border:1px solid rgba(255,255,255,0.13);
+    border-radius:24px;padding:52px 44px;text-align:center;
+    max-width:520px;width:100%;
+    backdrop-filter:blur(16px);
+    box-shadow:0 24px 60px rgba(0,0,0,0.4);
+    animation:popIn 0.7s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  }
+
+  .check-circle{
+    width:80px;height:80px;border-radius:50%;
+    background:linear-gradient(135deg,var(--teal),var(--navy));
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 24px;
+    box-shadow:0 8px 28px rgba(40,120,168,0.45);
+    animation:scaleIn 0.5s 0.3s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  }
+  .check-circle svg{width:40px;height:40px;}
+
+  .logo{height:52px;object-fit:contain;margin-bottom:28px;display:block;margin-left:auto;margin-right:auto;
+    filter:drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+    animation:fadeDown 0.6s 0.1s ease both;}
+
+  h1{
+    font-family:'Noto Serif Bengali',serif;
+    font-size:1.55rem;font-weight:700;color:#fff;
+    margin-bottom:20px;line-height:1.5;
+    animation:fadeUp 0.6s 0.4s ease both;
+  }
+
+  .divider{
+    width:60px;height:3px;
+    background:linear-gradient(90deg,var(--red),var(--teal));
+    border-radius:2px;margin:0 auto 24px;
+    animation:fadeUp 0.6s 0.5s ease both;
+  }
+
+  .message{
+    font-size:0.97rem;line-height:2;
+    color:rgba(255,255,255,0.82);
+    border-left:4px solid var(--teal);
+    padding:18px 20px;
+    background:rgba(40,120,168,0.1);
+    border-radius:0 12px 12px 0;
+    text-align:left;margin-bottom:32px;
+    animation:fadeUp 0.6s 0.55s ease both;
+  }
+  .message strong{color:#fff;}
+
+  .team-badge{
+    display:inline-block;
+    background:linear-gradient(135deg,rgba(240,192,64,0.15),rgba(240,192,64,0.05));
+    border:1px solid rgba(240,192,64,0.3);
+    color:var(--gold);padding:8px 20px;border-radius:20px;
+    font-size:0.82rem;font-weight:700;letter-spacing:0.5px;
+    margin-bottom:32px;
+    animation:fadeUp 0.6s 0.6s ease both;
+  }
+
+  .back-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,var(--red),#a01818);
+    color:#fff;padding:13px 28px;border-radius:10px;
+    text-decoration:none;font-weight:700;font-size:0.92rem;
+    box-shadow:0 4px 18px rgba(212,43,43,0.4);
+    transition:all 0.3s;
+    animation:fadeUp 0.6s 0.7s ease both;
+  }
+  .back-btn:hover{
+    background:linear-gradient(135deg,#b81f1f,#8a1010);
+    transform:translateY(-3px);
+    box-shadow:0 8px 24px rgba(212,43,43,0.5);
+  }
+
+  .countdown{
+    font-size:0.72rem;color:rgba(255,255,255,0.35);
+    margin-top:16px;
+    animation:fadeUp 0.6s 0.8s ease both;
+  }
+  .countdown span{color:rgba(255,255,255,0.6);font-weight:600;}
+
+  /* ── floating particles ── */
+  .particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+  .p{position:absolute;border-radius:50%;opacity:0.18;animation:float linear infinite;}
+  .p1{width:6px;height:6px;background:var(--gold);top:15%;left:10%;animation-duration:8s;}
+  .p2{width:4px;height:4px;background:var(--teal);top:70%;left:80%;animation-duration:11s;animation-delay:2s;}
+  .p3{width:8px;height:8px;background:var(--red);top:40%;left:90%;animation-duration:9s;animation-delay:1s;}
+  .p4{width:5px;height:5px;background:#fff;top:85%;left:15%;animation-duration:13s;animation-delay:3s;}
+  .p5{width:3px;height:3px;background:var(--gold);top:25%;left:60%;animation-duration:7s;animation-delay:0.5s;}
+
+  @keyframes popIn{from{opacity:0;transform:scale(0.88) translateY(30px)}to{opacity:1;transform:none}}
+  @keyframes scaleIn{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+  @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-22px)}100%{transform:translateY(0)}}
+
+  @media(max-width:480px){
+    .card{padding:36px 24px;}
+    h1{font-size:1.25rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="particles">
+  <div class="p p1"></div><div class="p p2"></div>
+  <div class="p p3"></div><div class="p p4"></div><div class="p p5"></div>
+</div>
+
+<div class="card">
+
+  <img src="logoA.gif" class="logo" alt="গুঞ্জরণ"
+    onerror="this.onerror=null;this.src='https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/699186887_122302543424018124_7467840352417706762_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Vn_BfbQ5kVAQ7kNvwGN3iGX&_nc_ht=scontent.fdac189-1.fna&oh=00_Af6ijIgAPpD42HCZuf_Sf16zvWfzlIzcqTyLwuQXk_stNQ&oe=6A0DFAE5'">
+
+  <div class="check-circle">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 12.5L9.5 17L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <h1>আপনার বার্তা পাঠানো হয়েছে!</h1>
+  <div class="divider"></div>
+
+  <div class="message">
+    আমাদেরকে বার্তা পাঠানোর জন্য <strong>ধন্যবাদ।</strong><br><br>
+    আশা করি আমরা খুব শীঘ্রই আপনার সাথে যোগাযোগ করবো — <strong>ইনশা আল্লাহ।</strong>
+  </div>
+
+  <div class="team-badge">
+    🌟 গুঞ্জরণ টিম-এর পক্ষ থেকে আপনাকে জানাই অনেক অনেক মুবারকবাদ
+  </div>
+
+  <a href="index.html" class="back-btn">
+    ← মূল পেজে ফিরে যান
+  </a>
+
+  <p class="countdown">স্বয়ংক্রিয়ভাবে ফিরে যাবে <span id="timer">10</span> সেকেন্ডে...</p>
+</div>
+
+<script>
+  let t = 10;
+  const el = document.getElementById('timer');
+  const iv = setInterval(()=>{
+    t--;
+    el.textContent = t;
+    if(t <= 0){
+      clearInterval(iv);
+      window.location.href = 'index.html';
+    }
+  }, 1000);
+</script>
+</body>
+</html>
