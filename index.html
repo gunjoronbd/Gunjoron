@@ -37,17 +37,30 @@
   }
   nav{position:fixed;}
   .nav-links{display:flex;gap:6px;list-style:none;}
+  
+  /* ডেক্সটপ ভিউতে মেনু একদম মাঝে রাখার জন্য */
+  @media (min-width: 769px) {
+    .nav-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
   .nav-links a{color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;
     padding:7px 13px;border-radius:8px;
     background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);
     transition:all 0.22s;letter-spacing:0.2px;white-space:nowrap;}
   .nav-links a:hover{background:var(--red);border-color:var(--red);
     transform:translateY(-2px);box-shadow:0 4px 14px rgba(212,43,43,0.5);}
+    
+  /* আপডেট করা প্রফেশনাল যোগাযোগ বাটন */
   .nav-cta{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
-    padding:8px 166px;border-radius:8px;text-decoration:none;font-weight:700;
-    font-size:0.82rem;border:none;transition:all 0.22s;white-space:nowrap;
-    box-shadow:0 2px 10px rgba(212,43,43,0.4);}
-  .nav-cta:hover{background:linear-gradient(135deg,#b81f1f,#8a1010);transform:translateY(-2px);}
+    padding:9px 28px;border-radius:30px;text-decoration:none;font-weight:700;
+    font-size:0.85rem;border:1px solid rgba(255,255,255,0.2);transition:all 0.3s;white-space:nowrap;
+    box-shadow:0 4px 15px rgba(212,43,43,0.3);margin-left:auto;}
+  .nav-cta:hover{background:linear-gradient(135deg,#b81f1f,#8a1010);transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(212,43,43,0.45);}
 
   /* ── HAMBURGER ── */
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;
@@ -70,6 +83,7 @@
   nav.open .nav-links{display:flex;flex-direction:row;flex-wrap:wrap;
     align-items:center;justify-content:center;
     position:absolute;top:100%;left:0;right:0;
+    transform:none; /* ডেক্সটপের transform রিসেট করা হলো */
     background:linear-gradient(180deg,rgba(8,14,45,0.97),rgba(10,20,60,0.97));
     backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
     padding:10px 12px 12px;gap:7px;
@@ -354,10 +368,9 @@
     .section-title{font-size:1.45rem;}
     .tab-content.active{grid-template-columns:1fr;}
     
-    /* এডিটেড: গ্রিড ব্যবহার করে 100% গ্যারান্টেড সমান স্কয়ার বক্স */
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* ৪টি কলাম একদম সমান হবে */
+      grid-template-columns: repeat(4, 1fr); 
       gap: 6px; 
       width: 100%;
       margin-top: 25px;
@@ -365,8 +378,8 @@
     }
     
     .stat {
-      aspect-ratio: 1 / 1; /* স্কয়ার শেপ নিশ্চিত করবে */
-      min-width: 0; /* লেখা বড় হলেও বক্স বড় হতে দিবে না */
+      aspect-ratio: 1 / 1; 
+      min-width: 0; 
       min-height: 0;
       padding: 4px 2px; 
       border-radius: 12px; 
@@ -380,14 +393,14 @@
     }
     
     .stat-num {
-      font-size: 1.1rem; /* মোবাইলের জন্য পারফেক্ট সাইজ */
+      font-size: 1.1rem; 
       font-weight: 700;
       line-height: 1;
       margin-bottom: 2px;
     }
     
     .stat-label {
-      font-size: 0.55rem; /* ছোট সাইজ যাতে বক্সে সহজেই ফিট হয়ে যায় */
+      font-size: 0.55rem; 
       line-height: 1.2;
       text-align: center;
       white-space: normal;
@@ -424,7 +437,7 @@
 
 <div class="ticker-outer">
   <div class="ticker-bg">
-    <div class="ticker-badge"><span class="dot"></span>📢 বিজ্ঞপ্তি</div>
+    <div class="ticker-badge"><span class="dot"></span>বিজ্ঞপ্তি</div>
     <div class="ticker-scroll">
       <div class="ticker-track">
         <span class="ticker-item">আসসালামু আলাইকুম। আমরা একটি কল্যাণমূলক ইসলামিক প্রজেক্ট বাস্তবায়ন করছি; আপনার সম্মানিত প্রতিষ্ঠানের স্পন্সরশিপ ও সহযোগিতা কামনা করছি, যাতে দ্বীনের এই খেদমতে আপনারাও সওয়াবের অংশীদার হতে পারেন।</span>
@@ -441,7 +454,7 @@
   <div class="hero-content">
     <img loading="lazy" decoding="async" src="logo.png" class="hero-logo-img" alt="GUNJORON" onerror="this.onerror=null;this.src='https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/699186887_122302543424018124_7467840352417706762_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Vn_BfbQ5kVAQ7kNvwGN3iGX&_nc_ht=scontent.fdac189-1.fna&oh=00_Af6ijIgAPpD42HCZuf_Sf16zvWfzlIzcqTyLwuQXk_stNQ&oe=6A0DFAE5'">
     <div class="hero-btns" style="margin-top:10px;">
-      <a href="#content" class="btn-outline">🎵 কন্টেন্ট দেখুন</a>
+      <a href="#content" class="btn-outline">🎬 কন্টেন্ট দেখুন</a>
       <a href="#about" class="btn-outline">📖 আমাদের পরিচিতি</a>
     </div>
     <div class="hero-divider"></div>
@@ -564,8 +577,8 @@
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdul Malek.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdul.malak.48838" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুল মালেক</h4><p>নাশিদ শিল্পী</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Al amin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/profile.php?id=61582764721807" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আল আমিন</h4><p>নাশিদ শিল্পী</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Ridoy.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/ridoy.kawsarmahmud" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>কাউসার মাহমুদ হৃদয়</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdur Rahman.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdur.rahman.huzaifi.148343" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুর রহমান</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="arif.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/arfballh.2024" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আরিফুল বিল্লাহ</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdur Rahman.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdur.rahman.huzaifi.148343" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুর রহমান হুযাইফী</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="arif.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/arfballh.2024" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আরিফ বিল্লাহ</h4><p>নাশিদ শিল্পী</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Basir.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/adnan.basir.23275" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আদনান বাছির</h4><p>নাশিদ শিল্পী</p></div>
     </div>
   </div>
@@ -618,7 +631,7 @@
   <div class="contact-grid">
     <div class="contact-info">
       <h3>গুঞ্জরণের সাথে যুক্ত হন</h3>
-      <p>স্টুডিও বুকিং, কন্টেন্ট তৈরি, স্পন্সরশিপ বা যেকোনো বিষয়ে আমাদের সাথে যোগাযোগ করুন।</p>
+      <p>স্টুডিও বুকিং, কন্টেন্ট তৈরি, স্পন্সরশিপ বা যেকোনো বিষয়ে আমাদের সাথে যোগাযোগ করুন.</p>
       <div class="contact-item">
         <div class="contact-icon ci-navy">📍</div>
         <div class="contact-item-text"><h5>ঠিকানা</h5><p>বারিধারা, নতুন বাজার, ভাটারা, ঢাকা-১২১২</p></div>
@@ -712,8 +725,6 @@
 </footer>
 
 <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
-
-
 
 <script>
 function toggleNav(){
