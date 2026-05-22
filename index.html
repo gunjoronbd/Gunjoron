@@ -19,10 +19,23 @@
   nav{position:fixed;top:0;width:100%;z-index:1000;
     background:linear-gradient(90deg,rgba(10,18,60,0.98) 0%,rgba(20,35,90,0.98) 100%);
     backdrop-filter:blur(14px);padding:8px 4%;
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;justify-content:space-between;position:relative;
     box-shadow:0 2px 24px rgba(0,0,0,0.45),0 1px 0 rgba(40,120,168,0.3);}
   .nav-logo img{height:48px;object-fit:contain;display:block;border-radius:4px;}
-  .nav-logo{transform-origin:left center;will-change:transform;}
+  .nav-logo{
+    position:relative;
+    left:0;
+    transform:translateX(0);
+    transform-origin:center center;
+    transition:all 0.45s ease;
+    z-index:1002;
+  }
+  .nav-logo.centered{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%) scale(0.96);
+  }
+  nav{position:fixed;}
   .nav-links{display:flex;gap:6px;list-style:none;}
   .nav-links a{color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;
     padding:7px 13px;border-radius:8px;
@@ -31,17 +44,17 @@
   .nav-links a:hover{background:var(--red);border-color:var(--red);
     transform:translateY(-2px);box-shadow:0 4px 14px rgba(212,43,43,0.5);}
   .nav-cta{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
-    padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:700;
+    padding:8px 166px;border-radius:8px;text-decoration:none;font-weight:700;
     font-size:0.82rem;border:none;transition:all 0.22s;white-space:nowrap;
     box-shadow:0 2px 10px rgba(212,43,43,0.4);}
   .nav-cta:hover{background:linear-gradient(135deg,#b81f1f,#8a1010);transform:translateY(-2px);}
 
-  /* ── HAMBURGER (আধুনিক) ── */
+  /* ── HAMBURGER ── */
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;
     background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(40,120,168,0.15));
     border:1px solid rgba(255,255,255,0.22);
     padding:9px 10px;border-radius:10px;
-    align-items:center;justify-content:center;
+    align-items:center;justify-content:flex-start;
     transition:all 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
   .hamburger:hover{background:linear-gradient(135deg,rgba(212,43,43,0.35),rgba(212,43,43,0.15));
     border-color:rgba(212,43,43,0.55);box-shadow:0 0 14px rgba(212,43,43,0.3);}
@@ -53,23 +66,24 @@
   nav.open .hamburger span:nth-child(2){opacity:0;transform:scaleX(0);}
   nav.open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-  /* ── MOBILE MENU (glass cards vertical) ── */
-  nav.open .nav-links{display:flex;flex-direction:column;flex-wrap:nowrap;
-    align-items:stretch;position:absolute;top:100%;left:0;right:0;
+  /* ── MOBILE MENU ── */
+  nav.open .nav-links{display:flex;flex-direction:row;flex-wrap:wrap;
+    align-items:center;justify-content:center;
+    position:absolute;top:100%;left:0;right:0;
     background:linear-gradient(180deg,rgba(8,14,45,0.97),rgba(10,20,60,0.97));
     backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
-    padding:12px 14px 14px;gap:7px;
+    padding:10px 12px 12px;gap:7px;
     border-top:1px solid rgba(255,255,255,0.08);}
-  nav.open .nav-links li{width:100%;}
-  nav.open .nav-links a{display:block;width:fit-content;
+  nav.open .nav-links li{width:auto;}
+  nav.open .nav-links a{display:inline-block;width:auto;
     background:rgba(255,255,255,0.07);
     border:1px solid rgba(255,255,255,0.15);
     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    border-radius:10px;padding:10px 16px;
-    color:#fff;font-size:0.88rem;font-weight:600;
-    transition:all 0.22s;letter-spacing:0.3px;}
+    border-radius:10px;padding:8px 13px;
+    color:#fff;font-size:0.82rem;font-weight:600;
+    transition:all 0.22s;letter-spacing:0.3px;white-space:nowrap;}
   nav.open .nav-links a:hover{background:rgba(212,43,43,0.25);border-color:rgba(212,43,43,0.5);}
-  nav.open .nav-cta{display:flex;width:fit-content;margin:4px 14px 10px;}
+  nav.open .nav-cta{display:none;}
 
   /* ── TICKER ── */
   .ticker-outer{margin-top:64px;position:relative;overflow:hidden;}
@@ -103,11 +117,12 @@
     background:radial-gradient(ellipse at 20% 80%,rgba(212,43,43,0.08) 0%,transparent 55%);}
   .hero-content{position:relative;z-index:1;max-width:680px;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    margin:auto;}
-  .hero-logo-img{width:260px;max-width:80vw;margin-bottom:18px;
-    filter:drop-shadow(0 12px 40px rgba(0,0,0,0.65));animation:floatUp 1s ease both;}
+    margin:0 auto;width:100%;text-align:center;}
+  .hero-logo-img{width:260px;max-width:80vw;margin:0 auto 18px;
+    filter:drop-shadow(0 12px 40px rgba(0,0,0,0.65));animation:floatUp 1s ease both;
+    display:block;}
   .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-    animation:fadeIn 1s 0.4s ease both;}
+    animation:fadeIn 1s 0.4s ease both;width:100%;}
   .btn-primary{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
     padding:14px 30px;border-radius:10px;text-decoration:none;font-weight:700;
     font-size:0.95rem;transition:all 0.3s;box-shadow:0 2px 10px rgba(212,43,43,0.25);}
@@ -322,32 +337,76 @@
 
   /* ── MOBILE ── */
   @media(max-width:768px){
+    nav { min-height: 64px; }
+    
     .nav-links,.nav-cta{display:none;}
-    .hamburger{display:flex;}
+    .nav-cta{display:none!important;}
+    
+    .hamburger{
+      display:flex;
+      margin-left: auto;
+    }
+    
     .hero-logo-img{width:180px;margin-bottom:14px;}
     .contact-grid{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr 1fr;}
     section{padding:58px 5%;}
     .section-title{font-size:1.45rem;}
     .tab-content.active{grid-template-columns:1fr;}
-    .hero-stats{gap:6px;flex-wrap:nowrap;margin-top:18px;}
-    .stat{padding:8px 6px;min-width:0;flex:1;}
-    .stat-num{font-size:1.1rem;}
-    .stat-label{font-size:0.6rem;}
+    
+    /* এডিটেড: গ্রিড ব্যবহার করে 100% গ্যারান্টেড সমান স্কয়ার বক্স */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* ৪টি কলাম একদম সমান হবে */
+      gap: 6px; 
+      width: 100%;
+      margin-top: 25px;
+      padding: 0 2px;
+    }
+    
+    .stat {
+      aspect-ratio: 1 / 1; /* স্কয়ার শেপ নিশ্চিত করবে */
+      min-width: 0; /* লেখা বড় হলেও বক্স বড় হতে দিবে না */
+      min-height: 0;
+      padding: 4px 2px; 
+      border-radius: 12px; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg,rgba(255,255,255,0.07),rgba(40,120,168,0.1));
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+    }
+    
+    .stat-num {
+      font-size: 1.1rem; /* মোবাইলের জন্য পারফেক্ট সাইজ */
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    
+    .stat-label {
+      font-size: 0.55rem; /* ছোট সাইজ যাতে বক্সে সহজেই ফিট হয়ে যায় */
+      line-height: 1.2;
+      text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
+      width: 100%;
+    }
+    
     .team-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
   }
 </style>
 </head>
 <body>
 
-<!-- SVG DEFS -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="fb-svg" viewBox="0 0 24 24">
     <path fill="white" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
   </symbol>
 </svg>
 
-<!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-logo" id="navLogo">
     <img loading="lazy" decoding="async" src="logoA.gif" alt="গুঞ্জরণ" onerror="this.onerror=null;this.src='https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/699186887_122302543424018124_7467840352417706762_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Vn_BfbQ5kVAQ7kNvwGN3iGX&_nc_ht=scontent.fdac189-1.fna&oh=00_Af6ijIgAPpD42HCZuf_Sf16zvWfzlIzcqTyLwuQXk_stNQ&oe=6A0DFAE5'">
@@ -363,7 +422,6 @@
   <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- TICKER -->
 <div class="ticker-outer">
   <div class="ticker-bg">
     <div class="ticker-badge"><span class="dot"></span>📢 বিজ্ঞপ্তি</div>
@@ -379,12 +437,11 @@
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-content">
     <img loading="lazy" decoding="async" src="logo.png" class="hero-logo-img" alt="GUNJORON" onerror="this.onerror=null;this.src='https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/699186887_122302543424018124_7467840352417706762_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Vn_BfbQ5kVAQ7kNvwGN3iGX&_nc_ht=scontent.fdac189-1.fna&oh=00_Af6ijIgAPpD42HCZuf_Sf16zvWfzlIzcqTyLwuQXk_stNQ&oe=6A0DFAE5'">
     <div class="hero-btns" style="margin-top:10px;">
-      <a href="#content" class="btn-primary">🎵 কন্টেন্ট দেখুন</a>
+      <a href="#content" class="btn-outline">🎵 কন্টেন্ট দেখুন</a>
       <a href="#about" class="btn-outline">📖 আমাদের পরিচিতি</a>
     </div>
     <div class="hero-divider"></div>
@@ -397,7 +454,6 @@
   </div>
 </section>
 
-<!-- SECTORS -->
 <section class="sectors" id="sectors">
   <div class="section-header">
     <div class="section-tag">আমাদের সেক্টর</div>
@@ -432,7 +488,6 @@
   </div>
 </section>
 
-<!-- CONTENT -->
 <section class="featured" id="content">
   <div class="section-header">
     <div class="section-tag">কন্টেন্ট</div>
@@ -451,7 +506,7 @@
     <div class="more-card" style="background:linear-gradient(135deg,var(--navy),var(--teal));" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">▶</div><h4>আরও নাশিদ দেখুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
   </div>
   <div class="tab-content" id="tab-1">
-    <div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4>গুঞ্জরণ ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন।</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>
+    <div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4>গুঞ্জরণ ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন.</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>
   </div>
   <div class="tab-content" id="tab-2">
     <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/DXMqysCxJX8?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p>গুঞ্জরণ তিলাওয়াত</p></div></div>
@@ -465,7 +520,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="section-header">
     <div class="section-tag">আমাদের পরিচিতি</div>
@@ -489,7 +543,6 @@
   </div>
 </section>
 
-<!-- TEAM -->
 <section class="team" id="team">
   <div class="section-header">
     <div class="section-tag">আমাদের টিম</div>
@@ -497,7 +550,6 @@
     <div class="section-line"></div>
   </div>
 
-  <!-- নাশিদ শিল্পী -->
   <div class="team-category">
     <div class="team-cat-title">
       <h3>🎵 নাশিদ শিল্পী <span class="team-cat-sub">(যাদের নাশিদ আমরা আপলোড দিয়েছি)</span></h3>
@@ -513,13 +565,11 @@
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Al amin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/profile.php?id=61582764721807" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আল আমিন</h4><p>নাশিদ শিল্পী</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Ridoy.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/ridoy.kawsarmahmud" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>কাউসার মাহমুদ হৃদয়</h4><p>নাশিদ শিল্পী</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdur Rahman.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdur.rahman.huzaifi.148343" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুর রহমান</h4><p>নাশিদ শিল্পী</p></div>
-      <!-- নতুন ২ জন -->
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="arif.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/arfballh.2024" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আরিফুল বিল্লাহ</h4><p>নাশিদ শিল্পী</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Basir.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/adnan.basir.23275" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আদনান বাছির</h4><p>নাশিদ শিল্পী</p></div>
     </div>
   </div>
 
-  <!-- প্রোডাকশন টিম -->
   <div class="team-category">
     <div class="team-cat-title"><h3>🎬 প্রোডাকশন টিম</h3><div class="team-cat-line"></div></div>
     <div class="team-grid">
@@ -531,7 +581,6 @@
     </div>
   </div>
 
-  <!-- কারী সাহেবান -->
   <div class="team-category">
     <div class="team-cat-title">
       <h3>📖 কারী সাহেবান <span class="team-cat-sub">(যাদের তিলাওয়াত আমরা আপলোড দিয়েছি)</span></h3>
@@ -545,7 +594,6 @@
     </div>
   </div>
 
-  <!-- আলেম প্যানেল -->
   <div class="team-category">
     <div class="team-cat-title">
       <h3>🎙️ আলেম প্যানেল <span class="team-cat-sub">(যাদের ওয়াজ আমরা আপলোড দিয়েছি)</span></h3>
@@ -561,7 +609,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-header">
     <div class="section-tag">যোগাযোগ করুন</div>
@@ -577,12 +624,10 @@
         <div class="contact-item-text"><h5>ঠিকানা</h5><p>বারিধারা, নতুন বাজার, ভাটারা, ঢাকা-১২১২</p></div>
       </div>
       <div class="contact-item">
-        <!-- ক্লিক করলে সরাসরি ডায়াল -->
         <a href="tel:+8801704598772" class="contact-icon ci-red contact-icon-link" title="ফোন করুন">📞</a>
         <div class="contact-item-text"><h5>ফোন নম্বর</h5><p>+880 1704 598 772</p></div>
       </div>
       <div class="contact-item">
-        <!-- ক্লিক করলে সরাসরি email app -->
         <a href="mailto:gunjoronbd@gmail.com" class="contact-icon ci-teal contact-icon-link" title="ইমেইল করুন">✉️</a>
         <div class="contact-item-text"><h5>ইমেইল</h5><p>gunjoronbd@gmail.com</p></div>
       </div>
@@ -622,7 +667,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -669,76 +713,80 @@
 
 <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
+
+
 <script>
-  /* ── TAB ── */
-  function switchTab(i){
-    document.querySelectorAll('.tab-content').forEach((t,j)=>t.classList.toggle('active',j===i));
-    document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
-  }
+function toggleNav(){
+  document.getElementById('navbar').classList.toggle('open');
+}
 
-  /* ── SCROLL TOP ── */
-  window.addEventListener('scroll',()=>{
-    document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);
-    handleLogoScroll();
-  },{passive:true});
-
-  /* ── HAMBURGER ── */
-  function toggleNav(){
-    document.getElementById('navbar').classList.toggle('open');
-  }
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.addEventListener('click',()=>document.getElementById('navbar').classList.remove('open'));
+function switchTab(index){
+  document.querySelectorAll('.tab-btn').forEach((btn,i)=>{
+    btn.classList.toggle('active', i===index);
   });
+  document.querySelectorAll('.tab-content').forEach((tab,i)=>{
+    tab.classList.toggle('active', i===index);
+  });
+}
 
-  /* ── MOBILE LOGO SCROLL TO NAVBAR CENTER ── */
-  const navLogoEl = document.getElementById('navLogo');
-  let logoTargetX = 0;
-  let logoAnimFrame = null;
+window.addEventListener('scroll',()=>{
+  const navLogo=document.getElementById('navLogo');
 
-  function calcLogoTarget(){
-    const r = navLogoEl.getBoundingClientRect();
-    const navW = window.innerWidth;
-    return (navW / 2) - r.left - (r.width / 2);
-  }
-
-  function handleLogoScroll(){
-    if(window.innerWidth > 768){
-      navLogoEl.style.transform='';
-      navLogoEl.style.zIndex='';
-      logoTargetX = 0;
-      return;
-    }
-    const scrolled = window.scrollY > 60;
-    if(scrolled){
-      if(!logoTargetX){
-        logoTargetX = calcLogoTarget();
-      }
-      navLogoEl.style.transform = `translateX(${logoTargetX}px)`;
-      navLogoEl.style.transition = 'transform 0.45s cubic-bezier(0.4,0,0.2,1)';
-      navLogoEl.style.zIndex = '1001';
-    } else {
-      navLogoEl.style.transform = '';
-      navLogoEl.style.transition = 'transform 0.45s cubic-bezier(0.4,0,0.2,1)';
-      navLogoEl.style.zIndex = '';
-      logoTargetX = 0;
+  if(window.innerWidth <= 768){
+    if(window.scrollY > 80){
+      navLogo.classList.add('centered');
+    }else{
+      navLogo.classList.remove('centered');
     }
   }
 
-  window.addEventListener('resize',()=>{
-    logoTargetX = 0;
-    handleLogoScroll();
-  });
+  const scrollBtn=document.querySelector('.scroll-top');
+  if(scrollBtn){
+    scrollBtn.classList.toggle('visible',window.scrollY>300);
+  }
+});
 
-  /* ── SCROLL ANIMATION ── */
-  window.addEventListener('load',()=>{
-    const obs=new IntersectionObserver(es=>es.forEach(e=>{
-      if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
-    }),{threshold:0.06});
-    document.querySelectorAll('.sector-card,.yt-card,.more-card,.team-card').forEach(el=>{
-      el.style.opacity='0';el.style.transform='translateY(24px)';
-      el.style.transition='opacity 0.5s,transform 0.5s';obs.observe(el);
+document.addEventListener('DOMContentLoaded',()=>{
+  const form=document.querySelector('form');
+
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      fetch(form.action,{
+        method:'POST',
+        body:data,
+        headers:{'Accept':'application/json'}
+      }).then(()=>{
+        document.body.innerHTML = `
+        <div style="min-height:100vh;background:linear-gradient(160deg,#06102b 0%,#0d1f4a 45%,#1B3070 100%);display:flex;align-items:center;justify-content:center;padding:24px;font-family:'Hind Siliguri',sans-serif;">
+          <div style="background:linear-gradient(160deg,rgba(255,255,255,0.07),rgba(40,120,168,0.06));border:1px solid rgba(255,255,255,0.13);border-radius:24px;padding:52px 44px;text-align:center;max-width:520px;width:100%;backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,0.4);">
+            
+            <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2878A8,#1B3070);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+              <svg viewBox="0 0 24 24" fill="none" width="40" height="40">
+                <path d="M5 12.5L9.5 17L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <h1 style="font-size:1.7rem;color:#fff;margin-bottom:18px;">আপনার বার্তা সফল ভাবে পাঠানো হয়েছে!</h1>
+
+            <div style="font-size:1rem;line-height:2;color:rgba(255,255,255,0.82);background:rgba(40,120,168,0.1);padding:20px;border-radius:14px;margin-bottom:28px;">
+              আমাদেরকে বার্তা পাঠানোর জন্য <strong>ধন্যবাদ</strong><br>
+              খুব শীঘ্রই আমরা আপনার সাথে যোগাযোগ করবো — ইনশা আল্লাহ।
+            </div>
+
+            <button onclick="window.location.reload()" style="background:linear-gradient(135deg,#D42B2B,#a01818);color:#fff;border:none;padding:14px 30px;border-radius:10px;font-size:0.95rem;font-weight:700;cursor:pointer;">
+              ← মূল পেজে ফিরে যান
+            </button>
+
+          </div>
+        </div>`;
+      });
     });
-  });
+  }
+});
 </script>
 </body>
 </html>
