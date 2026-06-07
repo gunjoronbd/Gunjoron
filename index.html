@@ -255,7 +255,7 @@
     background:linear-gradient(90deg,var(--teal),rgba(40,120,168,0.1));}
   .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;}
   .team-card{background:linear-gradient(180deg,#fff 0%,#fafbff 100%);border-radius:16px;
-    padding:20px 14px;text-align:center;
+    padding:20px 14px;text-align:center;position:relative;
     box-shadow:0 3px 12px rgba(27,48,112,0.08);transition:0.3s;}
   .team-card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(27,48,112,0.16);}
   .team-photo-wrap{position:relative;display:inline-block;margin:0 auto 13px;}
@@ -264,14 +264,117 @@
     display:flex;align-items:center;justify-content:center;}
   .team-photo img{width:100%;height:100%;object-fit:cover;display:block;}
   .team-photo .fallback{font-size:2rem;}
-  .fb-icon-btn{position:absolute;bottom:1px;left:1px;width:22px;height:22px;
-    background:#1877F2;border-radius:50%;display:flex;align-items:center;
-    justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.35);
-    transition:transform 0.2s;text-decoration:none;z-index:2;}
-  .fb-icon-btn:hover{transform:scale(1.18);}
-  .fb-icon-btn svg{width:12px;height:12px;display:block;}
   .team-card h4{font-size:0.84rem;font-weight:700;color:var(--navy);line-height:1.4;}
   .team-card p{font-size:0.7rem;color:var(--teal);font-weight:600;margin-top:4px;line-height:1.4;}
+  /* fb-icon-btn এখন আর কার্ডে নেই — শুধু profile overlay এর জন্য রেফারেন্স */
+  .profile-btn{position:absolute;bottom:1px;left:1px;width:26px;height:26px;
+    background:linear-gradient(135deg,var(--navy),var(--teal));
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.35);
+    transition:transform 0.2s;border:2px solid #fff;
+    text-decoration:none;z-index:3;}
+  .profile-btn:hover{transform:scale(1.18);box-shadow:0 4px 14px rgba(27,48,112,0.5);}
+  .profile-btn svg{width:13px;height:13px;display:block;}
+
+  /* ── PROFILE PAGE OVERLAY ── */
+  #profileOverlay{display:none;position:fixed;inset:0;z-index:9000;
+    background:linear-gradient(160deg,#06102b 0%,#0d1f4a 45%,#1B3070 100%);
+    overflow-y:auto;animation:fadeInProfile 0.28s ease;}
+  #profileOverlay.active{display:block;}
+  @keyframes fadeInProfile{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .profile-page{max-width:700px;margin:0 auto;padding:80px 5% 60px;}
+  .profile-back{display:inline-flex;align-items:center;gap:8px;
+    color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.85rem;font-weight:600;
+    background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+    padding:8px 18px;border-radius:20px;cursor:pointer;margin-bottom:32px;
+    transition:all 0.22s;border:none;}
+  .profile-back:hover{background:rgba(255,255,255,0.15);color:#fff;}
+  .profile-header{display:flex;align-items:center;gap:24px;margin-bottom:32px;flex-wrap:wrap;}
+  .profile-avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;
+    border:4px solid var(--teal);background:#e5e7eb;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;}
+  .profile-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .profile-avatar .fallback{font-size:3rem;}
+  .profile-name{font-size:1.5rem;font-weight:700;color:#fff;
+    font-family:'Noto Serif Bengali',serif;margin-bottom:5px;}
+  .profile-role{font-size:0.9rem;color:var(--teal);font-weight:600;margin-bottom:8px;}
+  .profile-org{font-size:0.8rem;color:rgba(255,255,255,0.55);
+    background:rgba(255,255,255,0.07);padding:4px 13px;border-radius:20px;display:inline-block;}
+  .profile-body{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+    border-radius:18px;padding:28px 26px;backdrop-filter:blur(8px);}
+  .profile-section{margin-bottom:20px;}
+  .profile-section:last-child{margin-bottom:0;}
+  .profile-section h5{font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.45);
+    text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+  .profile-section p{font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.85;}
+  .profile-social{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px;}
+  .profile-social a{display:inline-flex;align-items:center;gap:6px;
+    padding:7px 15px;border-radius:20px;font-size:0.78rem;font-weight:700;
+    color:#fff;text-decoration:none;transition:0.25s;}
+  .profile-social a:hover{transform:translateY(-2px);}
+  .psoc-fb{background:linear-gradient(135deg,#1877F2,#0d5dbf);}
+  .psoc-yt{background:linear-gradient(135deg,#FF0000,#b80000);}
+  .psoc-web{background:linear-gradient(135deg,var(--navy),var(--teal));}
+
+  /* ── ADMIN PANEL ── */
+  #adminNavBtn{color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;
+    padding:7px 13px;border-radius:8px;
+    background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);
+    transition:all 0.22s;letter-spacing:0.2px;white-space:nowrap;cursor:pointer;
+    font-family:'Hind Siliguri',sans-serif;}
+  #adminNavBtn:hover{background:var(--red);border-color:var(--red);
+    transform:translateY(-2px);box-shadow:0 4px 14px rgba(212,43,43,0.5);}
+  #adminOverlay{display:none;position:fixed;inset:0;z-index:9500;
+    background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);}
+  #adminOverlay.active{display:flex;align-items:flex-start;justify-content:center;padding:20px;}
+  #adminPanel{background:linear-gradient(160deg,#0d1f4a,#06102b);
+    border:1px solid rgba(255,255,255,0.15);border-radius:20px;
+    padding:28px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;
+    margin-top:30px;color:#fff;font-family:'Hind Siliguri',sans-serif;}
+  #adminPanel h2{font-size:1.2rem;font-weight:700;margin-bottom:6px;
+    font-family:'Noto Serif Bengali',serif;}
+  .admin-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0;}
+  .admin-tab{padding:7px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.7);
+    cursor:pointer;font-size:0.8rem;font-weight:600;font-family:'Hind Siliguri',sans-serif;transition:0.2s;}
+  .admin-tab.active,.admin-tab:hover{background:var(--red);border-color:var(--red);color:#fff;}
+  .admin-section{display:none;}
+  .admin-section.active{display:block;}
+  .admin-field{margin-bottom:13px;}
+  .admin-field label{display:block;font-size:0.78rem;color:rgba(255,255,255,0.6);
+    margin-bottom:5px;font-weight:600;}
+  .admin-field input,.admin-field textarea,.admin-field select{
+    width:100%;padding:9px 12px;border-radius:9px;
+    border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);
+    color:#fff;font-family:'Hind Siliguri',sans-serif;font-size:0.85rem;outline:none;}
+  .admin-field input:focus,.admin-field textarea:focus{border-color:var(--teal);}
+  .admin-field textarea{height:80px;resize:vertical;}
+  .admin-btn{padding:9px 20px;border-radius:9px;border:none;cursor:pointer;
+    font-family:'Hind Siliguri',sans-serif;font-size:0.85rem;font-weight:700;
+    transition:0.2s;color:#fff;}
+  .admin-btn-green{background:linear-gradient(135deg,#1a7a3e,#0e5229);}
+  .admin-btn-red{background:linear-gradient(135deg,var(--red),#8a1010);}
+  .admin-btn-blue{background:linear-gradient(135deg,var(--navy),var(--teal));}
+  .admin-btn:hover{transform:translateY(-1px);filter:brightness(1.1);}
+  .admin-close{float:right;background:rgba(255,255,255,0.1);border:none;
+    color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;
+    display:flex;align-items:center;justify-content:center;transition:0.2s;}
+  .admin-close:hover{background:var(--red);}
+  .admin-login{display:flex;flex-direction:column;gap:12px;max-width:300px;margin:20px auto;}
+  .yt-admin-list{list-style:none;margin-top:10px;}
+  .yt-admin-list li{display:flex;align-items:center;gap:8px;padding:8px 10px;
+    background:rgba(255,255,255,0.07);border-radius:8px;margin-bottom:6px;font-size:0.8rem;}
+  .yt-admin-list li span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    color:rgba(255,255,255,0.7);}
+  .team-admin-list{list-style:none;margin-top:8px;}
+  .team-admin-list li{display:flex;align-items:center;gap:8px;padding:8px 10px;
+    background:rgba(255,255,255,0.07);border-radius:8px;margin-bottom:6px;font-size:0.82rem;color:rgba(255,255,255,0.8);}
+  .team-admin-list li span{flex:1;}
+  .admin-msg{font-size:0.78rem;color:#4ade80;margin-top:8px;display:none;}
+  .admin-divider{border:none;border-top:1px solid rgba(255,255,255,0.1);margin:16px 0;}
+  .admin-pass-wrap{display:flex;gap:8px;}
+  .admin-pass-wrap input{flex:1;}
+
 
   /* ── CONTACT ── */
   .contact{background:linear-gradient(160deg,#fff 0%,#f8f9ff 100%);}
@@ -430,6 +533,7 @@
     <li><a href="#content">🎬 কন্টেন্ট</a></li>
     <li><a href="#about">📖 আমাদের পরিচিতি</a></li>
     <li><a href="#team">👥 টিম</a></li>
+    <li><button id="adminNavBtn" onclick="openAdmin()">⚙️ এডমিন</button></li>
   </ul>
   <a href="#contact" class="nav-cta">📞 যোগাযোগ</a>
   <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
@@ -459,10 +563,10 @@
     </div>
     <div class="hero-divider"></div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">৪+</div><div class="stat-label">সেক্টর</div></div>
-      <div class="stat"><div class="stat-num">২০+</div><div class="stat-label">টিম মেম্বার</div></div>
-      <div class="stat"><div class="stat-num">১০০+</div><div class="stat-label">কন্টেন্ট</div></div>
-      <div class="stat"><div class="stat-num">1M+</div><div class="stat-label">দর্শক</div></div>
+      <div class="stat"><div class="stat-num" id="stat-0">৪+</div><div class="stat-label" id="stat-label-0">সেক্টর</div></div>
+      <div class="stat"><div class="stat-num" id="stat-1">২০+</div><div class="stat-label" id="stat-label-1">টিম মেম্বার</div></div>
+      <div class="stat"><div class="stat-num" id="stat-2">১০০+</div><div class="stat-label" id="stat-label-2">কন্টেন্ট</div></div>
+      <div class="stat"><div class="stat-num" id="stat-3">1M+</div><div class="stat-label" id="stat-label-3">দর্শক</div></div>
     </div>
   </div>
 </section>
@@ -474,25 +578,25 @@
     <div class="section-line"></div>
   </div>
   <div class="sectors-grid">
-    <div class="sector-card" onclick="switchTab(0)">
+    <div class="sector-card" onclick="goToContent(0)">
       <span class="sector-icon">🎵</span>
       <h3>ইসলামি নাশিদ স্টুডিও<span>NASHEED STUDIO</span></h3>
       <p>পবিত্র কথা ও সুরের মেলবন্ধনে আত্মার খোরাক জোগাতে আমাদের নাশিদ স্টুডিও নিরলস কাজ করে যাচ্ছে।</p>
       <span class="sector-badge">এখনই শুনুন →</span>
     </div>
-    <div class="sector-card" onclick="switchTab(1)">
+    <div class="sector-card" onclick="goToContent(1)">
       <span class="sector-icon">🎬</span>
       <h3>ভিডিও প্রোডাকশন<span>VIDEO PRODUCTION</span></h3>
       <p>ইসলামি নাটক ও শর্টফিল্মের মাধ্যমে সমাজে ইতিবাচক বার্তা ছড়িয়ে দেওয়া আমাদের লক্ষ্য।</p>
       <span class="sector-badge">দেখুন →</span>
     </div>
-    <div class="sector-card" onclick="switchTab(2)">
+    <div class="sector-card" onclick="goToContent(2)">
       <span class="sector-icon">📖</span>
       <h3>কুরআন তিলাওয়াত<span>QURAN RECITATION</span></h3>
       <p>বিশুদ্ধ উচ্চারণ ও সুমধুর কণ্ঠে কুরআনুল কারিমের তিলাওয়াত উপভোগ করুন।</p>
       <span class="sector-badge">তিলাওয়াত শুনুন →</span>
     </div>
-    <div class="sector-card" onclick="switchTab(3)">
+    <div class="sector-card" onclick="goToContent(3)">
       <span class="sector-icon">🎙️</span>
       <h3>ওয়াজ ও নাসিহা<span>WAZ & NASIHAH</span></h3>
       <p>বিশিষ্ট আলেমদের জ্ঞানগর্ভ ওয়াজ ও ইসলামি জীবনবিধানের উপর নাসিহা শুনুন।</p>
@@ -568,29 +672,31 @@
       <h3>🎵 নাশিদ শিল্পী <span class="team-cat-sub">(যাদের নাশিদ আমরা আপলোড দিয়েছি)</span></h3>
       <div class="team-cat-line"></div>
     </div>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mustafizur Rahman Junayed.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/mustafiz.rj" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Shoieb Islam.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/shoieb.islam.221424" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>শোয়াইব ইসলাম</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Tahsin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/muhammad.tahsin.212375" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুহাম্মাদ তাহসিন</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Omor Faruk.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/profile.php?id=100075224510619" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>ওমর ফারুক</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdullah Awlad.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdullahawlad1" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুল্লাহ আওলাদ</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdul Malek.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdul.malak.48838" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুল মালেক</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Al amin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/profile.php?id=61582764721807" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আল আমিন</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Ridoy.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/ridoy.kawsarmahmud" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>কাউসার মাহমুদ হৃদয়</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdur Rahman.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/abdur.rahman.huzaifi.148343" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুর রহমান হুযাইফী</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="arif.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/arfballh.2024" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আরিফ বিল্লাহ</h4><p>নাশিদ শিল্পী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Basir.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><a href="https://www.facebook.com/adnan.basir.23275" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আদনান বাছির</h4><p>নাশিদ শিল্পী</p></div>
+    <div class="team-grid" id="grid-nasheed">
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mustafizur Rahman Junayed.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/mustafiz.rj" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Shoieb Islam.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/shoieb.islam.221424" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>শোয়াইব ইসলাম</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Tahsin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/muhammad.tahsin.212375" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুহাম্মাদ তাহসিন</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Omor Faruk.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/profile.php?id=100075224510619" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>ওমর ফারুক</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdullah Awlad.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/abdullahawlad1" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আব্দুল্লাহ আওলাদ</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdul Malek.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/abdul.malak.48838" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আব্দুল মালেক</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Al amin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/profile.php?id=61582764721807" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আল আমিন</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Ridoy.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/ridoy.kawsarmahmud" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>কাউসার মাহমুদ হৃদয়</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdur Rahman.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/abdur.rahman.huzaifi.148343" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আব্দুর রহমান হুযাইফী</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="arif.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/arfballh.2024" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আরিফ বিল্লাহ</h4><p>নাশিদ শিল্পী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Basir.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎵</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/adnan.basir.23275" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আদনান বাছির</h4><p>নাশিদ শিল্পী</p></div>
+      <div id="grid-nasheed-custom"></div>
     </div>
   </div>
 
   <div class="team-category">
     <div class="team-cat-title"><h3>🎬 প্রোডাকশন টিম</h3><div class="team-cat-line"></div></div>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mustafizur Rahman Junayed.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎬</span>'"></div><a href="https://www.facebook.com/mustafiz.rj" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>ডিরেক্টর, ভিডিও এডিটর ও সিনেমাটোগ্রাফার</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Muminul Islam.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>✍️</span>'"></div><a href="https://www.facebook.com/mominulislam38" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুমিনুল ইসলাম</h4><p>গল্পকার, পোস্টার ডিজাইনার</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mujahidul Islam.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎞️</span>'"></div><a href="https://www.facebook.com/md.mujahidul.islam.907353" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুজাহিদুল ইসলাম</h4><p>সহকারী ভিডিও এডিটর</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdul Aziz.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🤝</span>'"></div><a href="https://www.facebook.com/abdulaziz720" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুল আজিজ</h4><p>সহকারী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abu Hurayra.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🤝</span>'"></div><a href="https://www.facebook.com/hm.abuhorira.khan.2024" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আবু হুরায়রা খাঁন</h4><p>সহকারী</p></div>
+    <div class="team-grid" id="grid-production">
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mustafizur Rahman Junayed.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎬</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/mustafiz.rj" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>ডিরেক্টর, ভিডিও এডিটর ও সিনেমাটোগ্রাফার</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Muminul Islam.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>✍️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/mominulislam38" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুমিনুল ইসলাম</h4><p>গল্পকার, পোস্টার ডিজাইনার</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mujahidul Islam.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎞️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/md.mujahidul.islam.907353" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুজাহিদুল ইসলাম</h4><p>সহকারী ভিডিও এডিটর</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdul Aziz.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🤝</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/abdulaziz720" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আব্দুল আজিজ</h4><p>সহকারী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abu Hurayra.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🤝</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/hm.abuhorira.khan.2024" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আবু হুরায়রা খাঁন</h4><p>সহকারী</p></div>
+      <div id="grid-production-custom"></div>
     </div>
   </div>
 
@@ -599,11 +705,12 @@
       <h3>📖 কারী সাহেবান <span class="team-cat-sub">(যাদের তিলাওয়াত আমরা আপলোড দিয়েছি)</span></h3>
       <div class="team-cat-line"></div>
     </div>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mustafizur Rahman Junayed.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><a href="https://www.facebook.com/mustafiz.rj" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>কারী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdullah Awlad.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><a href="https://www.facebook.com/abdullahawlad1" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>আব্দুল্লাহ আওলাদ</h4><p>কারী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Tahsin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><a href="https://www.facebook.com/muhammad.tahsin.212375" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুহাম্মাদ তাহসিন</h4><p>কারী</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Maruf Ahmed Proshno.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><a href="https://www.facebook.com/marufahammad.binsalam" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মারুফ আহমেদ প্রশ্ন</h4><p>কারী</p></div>
+    <div class="team-grid" id="grid-qari">
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Mustafizur Rahman Junayed.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/mustafiz.rj" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুস্তাফিজুর রহমান জুনায়েদ</h4><p>কারী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Abdullah Awlad.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/abdullahawlad1" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>আব্দুল্লাহ আওলাদ</h4><p>কারী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Tahsin.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/muhammad.tahsin.212375" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুহাম্মাদ তাহসিন</h4><p>কারী</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo"><img loading="lazy" decoding="async" src="Maruf Ahmed Proshno.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>📖</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/marufahammad.binsalam" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মারুফ আহমেদ প্রশ্ন</h4><p>কারী</p></div>
+      <div id="grid-qari-custom"></div>
     </div>
   </div>
 
@@ -612,12 +719,13 @@
       <h3>🎙️ আলেম প্যানেল <span class="team-cat-sub">(যাদের ওয়াজ আমরা আপলোড দিয়েছি)</span></h3>
       <div class="team-cat-line"></div>
     </div>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Mamunul Hok.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><a href="https://www.facebook.com/maolanamamunulhaque" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মাওলানা মামুনুল হক</h4><p style="color:#6b2fa0;">আলেম</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Sakawat Hosain Raji.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><a href="https://www.facebook.com/shakhaowat.hossain.52" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মুফতি সাকাওয়াত হুসাইন রাজি</h4><p style="color:#6b2fa0;">আলেম</p></div>
+    <div class="team-grid" id="grid-alem">
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Mamunul Hok.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/maolanamamunulhaque" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মাওলানা মামুনুল হক</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Sakawat Hosain Raji.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/shakhaowat.hossain.52" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুফতি সাকাওয়াত হুসাইন রাজি</h4><p style="color:#6b2fa0;">আলেম</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Habibullah mahmud Kasemi.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div></div><h4>মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী</h4><p style="color:#6b2fa0;">আলেম</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Oli Ullah.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div></div><h4>মুফতি ওয়ালি উল্লাহ</h4><p style="color:#6b2fa0;">আলেম</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Ibrahim Sulatn.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><a href="https://www.facebook.com/MawlanaIbrahimSultan" target="_blank" rel="noopener" class="fb-icon-btn" aria-label="Facebook"><svg width="12" height="12"><use href="#fb-svg"/></svg></a></div><h4>মাওলানা ইবরাহিম সুলতান</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Ibrahim Sulatn.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/MawlanaIbrahimSultan" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মাওলানা ইবরাহিম সুলতান</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div id="grid-alem-custom"></div>
     </div>
   </div>
 </section>
@@ -724,79 +832,668 @@
   </div>
 </footer>
 
+<!-- Profile Overlay -->
+<div id="profileOverlay">
+  <div class="profile-page">
+    <button class="profile-back" onclick="closeProfile()">← ফিরে যান</button>
+    <div class="profile-header">
+      <div class="profile-avatar" id="pAvatar"></div>
+      <div>
+        <div class="profile-name" id="pName"></div>
+        <div class="profile-role" id="pRole"></div>
+        <div class="profile-org" id="pOrg"></div>
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="profile-section" id="pBioWrap">
+        <h5>পরিচিতি</h5>
+        <p id="pBio"></p>
+      </div>
+      <div class="profile-section" id="pEduWrap">
+        <h5>শিক্ষা / যোগ্যতা</h5>
+        <p id="pEdu"></p>
+      </div>
+      <div class="profile-section" id="pExpWrap">
+        <h5>অভিজ্ঞতা</h5>
+        <p id="pExp"></p>
+      </div>
+      <div class="profile-social" id="pSocial"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<button id="adminNavBtn" style="display:none" onclick="openAdmin()"></button>
+<div id="adminOverlay">
+  <div id="adminPanel">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+      <h2>⚙️ এডমিন প্যানেল</h2>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <!-- Login -->
+    <div id="adminLoginSection">
+      <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-bottom:14px;">প্রবেশ করতে পাসওয়ার্ড দিন</p>
+      <div class="admin-login">
+        <div class="admin-pass-wrap">
+          <input type="password" id="adminPassInput" placeholder="পাসওয়ার্ড" onkeydown="if(event.key==='Enter')adminLogin()">
+          <button class="admin-btn admin-btn-blue" onclick="adminLogin()">প্রবেশ</button>
+        </div>
+        <span id="adminLoginErr" style="color:#f87171;font-size:0.78rem;display:none;">ভুল পাসওয়ার্ড!</span>
+      </div>
+    </div>
+    <!-- Main Panel -->
+    <div id="adminMain" style="display:none;">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="adminSwitchTab(0)">📊 স্ট্যাটস</button>
+        <button class="admin-tab" onclick="adminSwitchTab(1)">▶ ইউটিউব</button>
+        <button class="admin-tab" onclick="adminSwitchTab(2)">👤 সদস্য যোগ</button>
+        <button class="admin-tab" onclick="adminSwitchTab(3)">✏️ প্রোফাইল এডিট</button>
+        <button class="admin-tab" onclick="adminSwitchTab(4)">🔑 পাসওয়ার্ড</button>
+      </div>
+
+      <!-- Stats Tab -->
+      <div class="admin-section active" id="aTab0">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:14px;">হোম পেজের স্ট্যাটিস্টিক্স পরিবর্তন করুন।</p>
+        <div class="admin-field"><label>সেক্টর সংখ্যা</label><input type="text" id="as0" placeholder="যেমন: ৪+"></div>
+        <div class="admin-field"><label>টিম মেম্বার সংখ্যা</label><input type="text" id="as1" placeholder="যেমন: ২০+"></div>
+        <div class="admin-field"><label>কন্টেন্ট সংখ্যা</label><input type="text" id="as2" placeholder="যেমন: ১০০+"></div>
+        <div class="admin-field"><label>দর্শক সংখ্যা</label><input type="text" id="as3" placeholder="যেমন: 1M+"></div>
+        <button class="admin-btn admin-btn-green" onclick="saveStats()">✓ সেভ করুন</button>
+        <div class="admin-msg" id="statsMsg">স্ট্যাটস আপডেট হয়েছে!</div>
+      </div>
+
+      <!-- YouTube Tab -->
+      <div class="admin-section" id="aTab1">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:12px;">ইউটিউব ভিডিও যোগ বা মুছুন। নতুন ভিডিও সবার আগে দেখাবে।</p>
+        <div class="admin-field"><label>বিভাগ</label>
+          <select id="ytTabSel">
+            <option value="0">🎵 নাশিদ</option>
+            <option value="1">🎬 ফিল্ম</option>
+            <option value="2">📖 তিলাওয়াত</option>
+            <option value="3">🎙️ ওয়াজ</option>
+          </select>
+        </div>
+        <div class="admin-field"><label>YouTube Video ID বা URL</label><input type="text" id="ytUrl" placeholder="যেমন: Pb8jy0LUSdo বা পুরো URL"></div>
+        <div class="admin-field"><label>শিরোনাম</label><input type="text" id="ytTitle" placeholder="ভিডিওর নাম"></div>
+        <div class="admin-field"><label>চ্যানেল নাম</label><input type="text" id="ytChannel" placeholder="যেমন: গুঞ্জরণ স্টুডিও"></div>
+        <button class="admin-btn admin-btn-green" onclick="addYtVideo()">+ যোগ করুন</button>
+        <div class="admin-msg" id="ytMsg">ভিডিও যোগ হয়েছে!</div>
+        <hr class="admin-divider">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:8px;">বর্তমান কাস্টম ভিডিও তালিকা:</p>
+        <ul class="yt-admin-list" id="ytAdminList"></ul>
+      </div>
+
+      <!-- Members Tab -->
+      <div class="admin-section" id="aTab2">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:12px;">নতুন সদস্য যোগ করুন।</p>
+        <div class="admin-field"><label>বিভাগ</label>
+          <select id="memberCat">
+            <option value="nasheed">🎵 নাশিদ শিল্পী</option>
+            <option value="production">🎬 প্রোডাকশন টিম</option>
+            <option value="qari">📖 কারী সাহেবান</option>
+            <option value="alem">🎙️ আলেম প্যানেল</option>
+          </select>
+        </div>
+        <div class="admin-field"><label>পূর্ণ নাম</label><input type="text" id="mName" placeholder="সদস্যের নাম"></div>
+        <div class="admin-field"><label>পদবি / ভূমিকা</label><input type="text" id="mRole" placeholder="যেমন: নাশিদ শিল্পী"></div>
+        <div class="admin-field"><label>ছবি আপলোড করুন (সরাসরি)</label><input type="file" id="mPhotoFile" accept="image/*" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);"></div>
+        <div class="admin-field"><label>অথবা ছবির URL</label><input type="text" id="mPhoto" placeholder="https://i.ibb.co/..."></div>
+        <div class="admin-field"><label>Facebook লিংক (ঐচ্ছিক)</label><input type="text" id="mFb" placeholder="https://facebook.com/..."></div>
+        <div class="admin-field"><label>YouTube লিংক (ঐচ্ছিক)</label><input type="text" id="mYt" placeholder="https://youtube.com/..."></div>
+        <div class="admin-field"><label>ওয়েবসাইট লিংক (ঐচ্ছিক)</label><input type="text" id="mWeb" placeholder="https://..."></div>
+        <hr class="admin-divider">
+        <p style="color:rgba(255,255,255,0.6);font-size:0.82rem;margin-bottom:10px;font-weight:600;">প্রোফাইল তথ্য</p>
+        <div class="admin-field"><label>সংক্ষিপ্ত পরিচিতি</label><textarea id="mBio" placeholder="এই সদস্য সম্পর্কে কিছু লিখুন..."></textarea></div>
+        <div class="admin-field"><label>শিক্ষা / যোগ্যতা</label><input type="text" id="mEdu" placeholder="যেমন: দাওরায়ে হাদিস, মাদ্রাসা..."></div>
+        <div class="admin-field"><label>অভিজ্ঞতা</label><input type="text" id="mExp" placeholder="যেমন: ৫ বছর নাশিদ পরিবেশনের অভিজ্ঞতা"></div>
+        <button class="admin-btn admin-btn-green" onclick="addMember()" id="addMemberBtn">+ সদস্য যোগ করুন</button>
+        <div class="admin-msg" id="memberMsg">সদস্য যোগ হয়েছে!</div>
+        <hr class="admin-divider">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:8px;">কাস্টম সদস্য তালিকা:</p>
+        <ul class="team-admin-list" id="teamAdminList"></ul>
+      </div>
+
+      <!-- Profile Edit Tab -->
+      <div class="admin-section" id="aTab3">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:10px;">বিদ্যমান সদস্যদের প্রোফাইল তথ্য যোগ বা পরিবর্তন করুন।</p>
+        <ul class="team-admin-list" id="staticMemberList"></ul>
+      </div>
+
+      <!-- Password Tab -->
+      <div class="admin-section" id="aTab4">
+        <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:14px;">এডমিন পাসওয়ার্ড পরিবর্তন করুন।</p>
+        <div class="admin-field"><label>বর্তমান পাসওয়ার্ড</label><input type="password" id="passOld" placeholder="বর্তমান পাসওয়ার্ড"></div>
+        <div class="admin-field"><label>নতুন পাসওয়ার্ড</label><input type="password" id="passNew1" placeholder="নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)"></div>
+        <div class="admin-field"><label>নতুন পাসওয়ার্ড আবার লিখুন</label><input type="password" id="passNew2" placeholder="নিশ্চিত করুন"></div>
+        <button class="admin-btn admin-btn-blue" onclick="changeAdminPass()">🔑 পাসওয়ার্ড পরিবর্তন করুন</button>
+        <div class="admin-msg" id="passMsg">পাসওয়ার্ড সফলভাবে পরিবর্তন হয়েছে!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Static Member Edit Modal -->
+<div id="staticEditModal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;">
+  <div style="background:linear-gradient(160deg,#0d1f4a,#06102b);border:1px solid rgba(255,255,255,0.15);border-radius:18px;padding:24px;width:100%;max-width:540px;max-height:88vh;overflow-y:auto;color:#fff;font-family:'Hind Siliguri',sans-serif;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <h3 style="font-size:1rem;font-weight:700;" id="seName">প্রোফাইল এডিট</h3>
+      <button class="admin-close" onclick="closeStaticEdit()">✕</button>
+    </div>
+    <input type="hidden" id="seKey">
+    <div class="admin-field"><label>ছবি আপলোড করুন (সরাসরি — সবচেয়ে ভালো)</label><input type="file" id="sePhotoFile" accept="image/*" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);"></div>
+    <div class="admin-field"><label>অথবা ছবির URL (ImgBB/Imgur/Google Drive)</label><input type="text" id="sePhoto" placeholder="https://i.ibb.co/..."></div>
+    <div class="admin-field"><label>সংক্ষিপ্ত পরিচিতি</label><textarea id="seBio" placeholder="এই সদস্য সম্পর্কে কিছু লিখুন..."></textarea></div>
+    <div class="admin-field"><label>শিক্ষা / যোগ্যতা</label><input type="text" id="seEdu" placeholder="যেমন: দাওরায়ে হাদিস"></div>
+    <div class="admin-field"><label>অভিজ্ঞতা</label><input type="text" id="seExp" placeholder="যেমন: ৫ বছরের অভিজ্ঞতা"></div>
+    <div class="admin-field"><label>ওয়েবসাইট লিংক</label><input type="text" id="seWeb" placeholder="https://..."></div>
+    <div class="admin-field"><label>YouTube লিংক</label><input type="text" id="seYt" placeholder="https://youtube.com/..."></div>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button class="admin-btn admin-btn-green" onclick="saveStaticEdit()">✓ সেভ করুন</button>
+      <button class="admin-btn" style="background:rgba(255,255,255,0.1);" onclick="closeStaticEdit()">বাতিল</button>
+    </div>
+    <div class="admin-msg" id="staticEditMsg" style="margin-top:8px;">প্রোফাইল সেভ হয়েছে!</div>
+  </div>
+</div>
+
 <div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
 <script>
-function toggleNav(){
-  document.getElementById('navbar').classList.toggle('open');
+/* ══════════════════════════════════════════════════════
+   গুঞ্জরণ ওয়েবসাইট — সম্পূর্ণ স্ক্রিপ্ট v3
+   Supabase + LocalStorage fallback
+══════════════════════════════════════════════════════ */
+
+/* ── SUPABASE CONFIG (obfuscated) ── */
+const _cfg = {
+  u: atob('aHR0cHM6Ly9maHRuc2lvZXBmdW1lbHBrZ2Vvei5zdXBhYmFzZS5jbw=='),
+  k: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZodG5zaW9lcGZ1bWVscGtnZW96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MzM2MzgsImV4cCI6MjA5NjQwOTYzOH0.JQ-TOpPmdhQwIJmtryYIX9v_srQnf8M7sUWU5xdSKjI'
+};
+
+/* ── ADMIN PASSWORD (hashed via simple obfuscation) ── */
+let _adminPass = localStorage.getItem('gjAdminPass') || btoa('gunjoron2024');
+function _checkPass(input){ return btoa(input) === _adminPass; }
+function _setPass(newPass){ _adminPass = btoa(newPass); localStorage.setItem('gjAdminPass', _adminPass); }
+
+let adminLoggedIn = false;
+
+/* ══════════════════════════════════════
+   SUPABASE API WRAPPER
+══════════════════════════════════════ */
+async function sbGet(table, key){
+  try{
+    const r = await fetch(`${_cfg.u}/rest/v1/${table}?key=eq.${encodeURIComponent(key)}&select=value`, {
+      headers:{ apikey: _cfg.k, Authorization: 'Bearer '+_cfg.k }
+    });
+    if(!r.ok) return null;
+    const d = await r.json();
+    return d.length ? d[0].value : null;
+  }catch(e){ return null; }
+}
+async function sbSet(table, key, value){
+  try{
+    await fetch(`${_cfg.u}/rest/v1/${table}`, {
+      method:'POST',
+      headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k, 'Content-Type':'application/json', Prefer:'resolution=merge-duplicates' },
+      body: JSON.stringify({key, value})
+    });
+  }catch(e){}
+}
+async function sbDel(table, key){
+  try{
+    await fetch(`${_cfg.u}/rest/v1/${table}?key=eq.${encodeURIComponent(key)}`, {
+      method:'DELETE',
+      headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k }
+    });
+  }catch(e){}
 }
 
-function switchTab(index){
-  document.querySelectorAll('.tab-btn').forEach((btn,i)=>{
-    btn.classList.toggle('active', i===index);
-  });
-  document.querySelectorAll('.tab-content').forEach((tab,i)=>{
-    tab.classList.toggle('active', i===index);
-  });
+/* Upload image to Supabase Storage */
+async function sbUploadImage(file, path){
+  try{
+    const r = await fetch(`${_cfg.u}/storage/v1/object/gunjoron-images/${path}`, {
+      method:'POST',
+      headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k, 'Content-Type': file.type, 'x-upsert':'true' },
+      body: file
+    });
+    if(r.ok){
+      return `${_cfg.u}/storage/v1/object/public/gunjoron-images/${path}`;
+    }
+    return null;
+  }catch(e){ return null; }
+}
+
+/* Smart get: Supabase first, localStorage fallback */
+async function dataGet(key){
+  const sbVal = await sbGet('site_data', key);
+  if(sbVal !== null) return JSON.parse(sbVal);
+  const ls = localStorage.getItem('gj_'+key);
+  return ls ? JSON.parse(ls) : null;
+}
+/* Smart set: both Supabase and localStorage */
+async function dataSet(key, val){
+  const str = JSON.stringify(val);
+  localStorage.setItem('gj_'+key, str);
+  await sbSet('site_data', key, str);
+}
+
+/* ══════════════════════════════════════
+   NAV & TABS
+══════════════════════════════════════ */
+function toggleNav(){ document.getElementById('navbar').classList.toggle('open'); }
+
+function switchTab(i){
+  document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',i===j));
+  document.querySelectorAll('.tab-content').forEach((t,j)=>t.classList.toggle('active',i===j));
+}
+
+function goToContent(tabIndex){
+  switchTab(tabIndex);
+  const sec=document.getElementById('content');
+  if(sec) window.scrollTo({top:sec.getBoundingClientRect().top+window.scrollY-72,behavior:'smooth'});
 }
 
 window.addEventListener('scroll',()=>{
-  const navLogo=document.getElementById('navLogo');
+  const nl=document.getElementById('navLogo');
+  if(window.innerWidth<=768) nl.classList.toggle('centered',window.scrollY>80);
+  document.querySelector('.scroll-top')?.classList.toggle('visible',window.scrollY>300);
+});
 
-  if(window.innerWidth <= 768){
-    if(window.scrollY > 80){
-      navLogo.classList.add('centered');
-    }else{
-      navLogo.classList.remove('centered');
+/* ══════════════════════════════════════
+   STATS
+══════════════════════════════════════ */
+const DEF_STATS=['৪+','২০+','১০০+','1M+'];
+async function loadStats(){
+  const d = await dataGet('stats') || DEF_STATS;
+  d.forEach((v,i)=>{ const el=document.getElementById('stat-'+i); if(el) el.textContent=v; });
+}
+async function saveStats(){
+  const vals=[0,1,2,3].map(i=>document.getElementById('as'+i).value.trim()||DEF_STATS[i]);
+  await dataSet('stats', vals);
+  loadStats();
+  showMsg('statsMsg');
+}
+
+/* ══════════════════════════════════════
+   YOUTUBE — with Show More
+══════════════════════════════════════ */
+const MORE_CARDS={
+  0:`<div class="more-card" style="background:linear-gradient(135deg,var(--navy),var(--teal));" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">▶</div><h4>আরও নাশিদ দেখুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>`,
+  1:`<div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4>গুঞ্জরণ ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন.</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>`,
+  2:`<div class="more-card" style="background:linear-gradient(135deg,#1a5c2e,#2e9b4e);" onclick="window.open('https://www.youtube.com/@gunjoron-tilawat','_blank')"><div class="more-card-inner"><div class="icon">📖</div><h4>আরও তিলাওয়াত শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>`,
+  3:`<div class="more-card" style="background:linear-gradient(135deg,#6b2fa0,#9b4dca);" onclick="window.open('https://www.youtube.com/@gunjoronwaz','_blank')"><div class="more-card-inner"><div class="icon">🎙️</div><h4>আরও ওয়াজ শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>`
+};
+const BASE_VIDS={
+  0:[{id:'Pb8jy0LUSdo',title:'গুঞ্জরণ নাশিদ',channel:'গুঞ্জরণ স্টুডিও'},{id:'m85KmyQIBkY',title:'গুঞ্জরণ নাশিদ',channel:'গুঞ্জরণ স্টুডিও'}],
+  1:[],
+  2:[{id:'DXMqysCxJX8',title:'কুরআন তিলাওয়াত',channel:'গুঞ্জরণ তিলাওয়াত'},{id:'JjeyS553jFs',title:'কুরআন তিলাওয়াত',channel:'গুঞ্জরণ তিলাওয়াত'}],
+  3:[{id:'wb9DNp8y6Tw',title:'ইসলামি ওয়াজ',channel:'গুঞ্জরণ ওয়াজ'},{id:'i3AL4IpmGoY',title:'ইসলামি ওয়াজ',channel:'গুঞ্জরণ ওয়াজ'}]
+};
+const SHOW_INIT = 3; // প্রথমে এতগুলো দেখাবে
+
+function buildYtCard(v){
+  return `<div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>${v.title}</h4><p>${v.channel}</p></div></div>`;
+}
+
+async function renderYtSection(){
+  const saved = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
+  [0,1,2,3].forEach(t=>{
+    const c=document.getElementById('tab-'+t); if(!c) return;
+    const all=[...(saved[t]||[]),...BASE_VIDS[t]];
+    const visible=all.slice(0,SHOW_INIT);
+    const hidden=all.slice(SHOW_INIT);
+    let html=visible.map(buildYtCard).join('');
+    if(hidden.length>0){
+      html+=`<div id="yt-more-${t}" style="display:none;">${hidden.map(buildYtCard).join('')}</div>`;
+      html+=`<div class="more-card" style="background:linear-gradient(135deg,rgba(27,48,112,0.7),rgba(40,120,168,0.5));cursor:pointer;" id="show-more-btn-${t}" onclick="showMoreYt(${t})"><div class="more-card-inner"><div class="icon">⬇️</div><h4>আরও ${hidden.length}টি ভিডিও দেখুন</h4><p>ক্লিক করুন →</p></div></div>`;
     }
-  }
+    html+=MORE_CARDS[t];
+    c.innerHTML=html;
+  });
+}
+function showMoreYt(t){
+  document.getElementById('yt-more-'+t).style.display='contents';
+  document.getElementById('show-more-btn-'+t).style.display='none';
+}
 
-  const scrollBtn=document.querySelector('.scroll-top');
-  if(scrollBtn){
-    scrollBtn.classList.toggle('visible',window.scrollY>300);
+function extractYtId(val){
+  val=val.trim();
+  const m=val.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([a-zA-Z0-9_-]{11})/);
+  if(m) return m[1];
+  if(/^[a-zA-Z0-9_-]{11}$/.test(val)) return val;
+  return null;
+}
+async function addYtVideo(){
+  const tab=document.getElementById('ytTabSel').value;
+  const vid=extractYtId(document.getElementById('ytUrl').value);
+  if(!vid){ alert('সঠিক YouTube Video ID বা URL দিন।'); return; }
+  const title=document.getElementById('ytTitle').value.trim()||'গুঞ্জরণ ভিডিও';
+  const ch=document.getElementById('ytChannel').value.trim()||'গুঞ্জরণ';
+  const d = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
+  d[tab].unshift({id:vid,title,channel:ch});
+  await dataSet('ytVideos', d);
+  renderYtSection(); renderYtAdminList();
+  ['ytUrl','ytTitle','ytChannel'].forEach(id=>document.getElementById(id).value='');
+  showMsg('ytMsg');
+}
+async function deleteYtVideo(tab,i){
+  const d = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
+  d[tab].splice(i,1);
+  await dataSet('ytVideos', d);
+  renderYtSection(); renderYtAdminList();
+}
+async function renderYtAdminList(){
+  const d = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
+  const sel=document.getElementById('ytTabSel').value;
+  const list=document.getElementById('ytAdminList');
+  const items=d[sel]||[];
+  if(!items.length){ list.innerHTML='<li style="color:rgba(255,255,255,0.4);font-size:0.78rem;">কোনো কাস্টম ভিডিও নেই</li>'; return; }
+  list.innerHTML=items.map((v,i)=>`<li><span>${v.title} (${v.id})</span><button class="admin-btn admin-btn-red" style="padding:4px 10px;font-size:0.72rem;" onclick="deleteYtVideo('${sel}',${i})">মুছুন</button></li>`).join('');
+}
+
+/* ══════════════════════════════════════
+   STATIC MEMBERS DATABASE
+══════════════════════════════════════ */
+const STATIC_MEMBERS=[
+  {key:'mustafiz-nasheed',  name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'নাশিদ শিল্পী',              photo:'Mustafizur Rahman Junayed.jpg',fb:'https://www.facebook.com/mustafiz.rj',           emoji:'🎵'},
+  {key:'shoieb',            name:'শোয়াইব ইসলাম',             role:'নাশিদ শিল্পী',              photo:'Shoieb Islam.jpg',               fb:'https://www.facebook.com/shoieb.islam.221424',   emoji:'🎵'},
+  {key:'tahsin-nasheed',    name:'মুহাম্মাদ তাহসিন',          role:'নাশিদ শিল্পী',              photo:'Tahsin.jpg',                    fb:'https://www.facebook.com/muhammad.tahsin.212375',emoji:'🎵'},
+  {key:'omarfaruk',         name:'ওমর ফারুক',                 role:'নাশিদ শিল্পী',              photo:'Omor Faruk.jpg',                fb:'https://www.facebook.com/profile.php?id=100075224510619',emoji:'🎵'},
+  {key:'awlad-nasheed',     name:'আব্দুল্লাহ আওলাদ',          role:'নাশিদ শিল্পী',              photo:'Abdullah Awlad.jpg',            fb:'https://www.facebook.com/abdullahawlad1',        emoji:'🎵'},
+  {key:'malek',             name:'আব্দুল মালেক',              role:'নাশিদ শিল্পী',              photo:'Abdul Malek.jpg',               fb:'https://www.facebook.com/abdul.malak.48838',     emoji:'🎵'},
+  {key:'alamin',            name:'আল আমিন',                  role:'নাশিদ শিল্পী',              photo:'Al amin.jpg',                   fb:'https://www.facebook.com/profile.php?id=61582764721807',emoji:'🎵'},
+  {key:'ridoy',             name:'কাউসার মাহমুদ হৃদয়',        role:'নাশিদ শিল্পী',              photo:'Ridoy.jpg',                     fb:'https://www.facebook.com/ridoy.kawsarmahmud',    emoji:'🎵'},
+  {key:'abdurrahman',       name:'আব্দুর রহমান হুযাইফী',       role:'নাশিদ শিল্পী',              photo:'Abdur Rahman.jpg',              fb:'https://www.facebook.com/abdur.rahman.huzaifi.148343',emoji:'🎵'},
+  {key:'arif',              name:'আরিফ বিল্লাহ',              role:'নাশিদ শিল্পী',              photo:'arif.jpg',                      fb:'https://www.facebook.com/arfballh.2024',         emoji:'🎵'},
+  {key:'basir',             name:'আদনান বাছির',               role:'নাশিদ শিল্পী',              photo:'Basir.jpg',                     fb:'https://www.facebook.com/adnan.basir.23275',     emoji:'🎵'},
+  {key:'mustafiz-prod',     name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'ডিরেক্টর, ভিডিও এডিটর ও সিনেমাটোগ্রাফার',photo:'Mustafizur Rahman Junayed.jpg',fb:'https://www.facebook.com/mustafiz.rj',emoji:'🎬'},
+  {key:'muminul',           name:'মুমিনুল ইসলাম',             role:'গল্পকার, পোস্টার ডিজাইনার', photo:'Muminul Islam.jpg',             fb:'https://www.facebook.com/mominulislam38',        emoji:'🎬'},
+  {key:'mujahidul',         name:'মুজাহিদুল ইসলাম',           role:'সহকারী ভিডিও এডিটর',       photo:'Mujahidul Islam.jpg',            fb:'https://www.facebook.com/md.mujahidul.islam.907353',emoji:'🎬'},
+  {key:'aziz',              name:'আব্দুল আজিজ',               role:'সহকারী',                    photo:'Abdul Aziz.jpg',                fb:'https://www.facebook.com/abdulaziz720',          emoji:'🎬'},
+  {key:'abuhurayra',        name:'আবু হুরায়রা খাঁন',           role:'সহকারী',                    photo:'Abu Hurayra.jpg',               fb:'https://www.facebook.com/hm.abuhorira.khan.2024',emoji:'🎬'},
+  {key:'mustafiz-qari',     name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'কারী',                      photo:'Mustafizur Rahman Junayed.jpg',  fb:'https://www.facebook.com/mustafiz.rj',           emoji:'📖'},
+  {key:'awlad-qari',        name:'আব্দুল্লাহ আওলাদ',          role:'কারী',                      photo:'Abdullah Awlad.jpg',            fb:'https://www.facebook.com/abdullahawlad1',        emoji:'📖'},
+  {key:'tahsin-qari',       name:'মুহাম্মাদ তাহসিন',          role:'কারী',                      photo:'Tahsin.jpg',                    fb:'https://www.facebook.com/muhammad.tahsin.212375',emoji:'📖'},
+  {key:'maruf',             name:'মারুফ আহমেদ প্রশ্ন',        role:'কারী',                      photo:'Maruf Ahmed Proshno.jpg',       fb:'https://www.facebook.com/marufahammad.binsalam', emoji:'📖'},
+  {key:'mamunul',           name:'মাওলানা মামুনুল হক',        role:'আলেম',                      photo:'Mamunul Hok.jpg',               fb:'https://www.facebook.com/maolanamamunulhaque',   emoji:'🎙️'},
+  {key:'sakawat',           name:'মুফতি সাকাওয়াত হুসাইন রাজি',role:'আলেম',                     photo:'Sakawat Hosain Raji.jpg',       fb:'https://www.facebook.com/shakhaowat.hossain.52', emoji:'🎙️'},
+  {key:'habibullah',        name:'মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী',role:'আলেম',                photo:'Habibullah mahmud Kasemi.jpg',  fb:'',                                               emoji:'🎙️'},
+  {key:'waliullah',         name:'মুফতি ওয়ালি উল্লাহ',        role:'আলেম',                      photo:'Oli Ullah.jpg',                 fb:'',                                               emoji:'🎙️'},
+  {key:'ibrahim',           name:'মাওলানা ইবরাহিম সুলতান',    role:'আলেম',                      photo:'Ibrahim Sulatn.jpg',            fb:'https://www.facebook.com/MawlanaIbrahimSultan',  emoji:'🎙️'},
+];
+
+let _staticProfiles = {}; // loaded from Supabase/LS
+
+async function loadStaticProfiles(){
+  _staticProfiles = await dataGet('staticProfiles') || {};
+}
+
+/* profile-btn গুলো JS দিয়ে wire up করা */
+function wireProfileButtons(){
+  document.querySelectorAll('.profile-btn[data-fb]').forEach(btn=>{
+    const nameEl = btn.closest('.team-card')?.querySelector('h4');
+    const roleEl = btn.closest('.team-card')?.querySelector('p');
+    if(!nameEl) return;
+    const name = nameEl.textContent.trim();
+    const role = roleEl?.textContent.trim()||'';
+    const fbUrl = btn.dataset.fb||'';
+    const sm = STATIC_MEMBERS.find(s=>s.name===name)||null;
+    const key = sm?.key||null;
+    const saved = key ? (_staticProfiles[key]||{}) : {};
+    const photoSrc = btn.closest('.team-card')?.querySelector('.team-photo img')?.src||'';
+    const data = {
+      name, role, fb:fbUrl,
+      photo: saved.photo || photoSrc,
+      bio: saved.bio||'',
+      edu: saved.edu||'',
+      exp: saved.exp||'',
+      web: saved.web||'',
+      yt:  saved.yt||'',
+      org: 'গুঞ্জরণ',
+      emoji: sm?.emoji||'👤',
+      staticKey: key
+    };
+    btn.onclick = ()=>showProfile(data);
+  });
+}
+
+/* ══════════════════════════════════════
+   CUSTOM MEMBERS
+══════════════════════════════════════ */
+const CAT_EMOJI={nasheed:'🎵',production:'🎬',qari:'📖',alem:'🎙️'};
+
+function buildCustomCard(m,cat,i){
+  const em=CAT_EMOJI[cat]||'👤';
+  const profileSVG='<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+  const ph=m.photo?`<img loading="lazy" src="${m.photo}" alt="" onerror="this.parentNode.innerHTML='<span class=\\'fallback\\'>${em}</span>'">`:`<span class='fallback'>${em}</span>`;
+  const data={...m,emoji:em,org:'গুঞ্জরণ'};
+  return `<div class="team-card"><div class="team-photo-wrap"><div class="team-photo">${ph}</div><button class="profile-btn" title="প্রোফাইল দেখুন" onclick='showProfile(${JSON.stringify(JSON.stringify(data))})'>${profileSVG}</button></div><h4>${m.name}</h4><p>${m.role||''}</p></div>`;
+}
+
+async function renderCustomMembers(){
+  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
+  ['nasheed','production','qari','alem'].forEach(cat=>{
+    const c=document.getElementById('grid-'+cat+'-custom'); if(!c) return;
+    c.innerHTML=(d[cat]||[]).map((m,i)=>buildCustomCard(m,cat,i)).join('');
+  });
+}
+
+async function addMember(){
+  const cat=document.getElementById('memberCat').value;
+  const name=document.getElementById('mName').value.trim();
+  if(!name){ alert('নাম দিন।'); return; }
+  let photoUrl = document.getElementById('mPhoto').value.trim();
+  // Try to upload if file selected
+  const fileInput = document.getElementById('mPhotoFile');
+  if(fileInput?.files?.length){
+    const uploaded = await uploadMemberPhoto(fileInput.files[0], name);
+    if(uploaded) photoUrl = uploaded;
+  }
+  const member={name,role:document.getElementById('mRole').value.trim(),photo:photoUrl,
+    fb:document.getElementById('mFb').value.trim(),bio:document.getElementById('mBio').value.trim(),
+    edu:document.getElementById('mEdu').value.trim(),exp:document.getElementById('mExp').value.trim(),
+    web:document.getElementById('mWeb').value.trim(),yt:document.getElementById('mYt').value.trim()};
+  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
+  d[cat].push(member);
+  await dataSet('teamMembers', d);
+  renderCustomMembers(); renderTeamAdminList();
+  ['mName','mRole','mPhoto','mFb','mBio','mEdu','mExp','mWeb','mYt'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  if(fileInput) fileInput.value='';
+  showMsg('memberMsg');
+}
+
+async function deleteMember(cat,i){
+  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
+  d[cat].splice(i,1);
+  await dataSet('teamMembers', d);
+  renderCustomMembers(); renderTeamAdminList();
+}
+
+async function renderTeamAdminList(){
+  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
+  const all=[];
+  Object.entries(d).forEach(([cat,members])=>members.forEach((m,i)=>all.push({cat,i,name:m.name,role:m.role})));
+  const list=document.getElementById('teamAdminList');
+  if(!all.length){ list.innerHTML='<li style="color:rgba(255,255,255,0.4);font-size:0.78rem;">কোনো কাস্টম সদস্য নেই</li>'; return; }
+  list.innerHTML=all.map(m=>`<li><span>${m.name} — ${m.role||''}</span><button class="admin-btn admin-btn-red" style="padding:4px 10px;font-size:0.72rem;" onclick="deleteMember('${m.cat}',${m.i})">মুছুন</button></li>`).join('');
+}
+
+/* ── Image upload to Supabase Storage ── */
+async function uploadMemberPhoto(file, memberName){
+  const ext = file.name.split('.').pop();
+  const path = `members/${memberName.replace(/\s+/g,'-')}-${Date.now()}.${ext}`;
+  const url = await sbUploadImage(file, path);
+  return url;
+}
+
+/* ══════════════════════════════════════
+   STATIC MEMBER PROFILE EDIT
+══════════════════════════════════════ */
+async function renderStaticMemberAdminList(){
+  const list=document.getElementById('staticMemberList'); if(!list) return;
+  list.innerHTML=STATIC_MEMBERS.map(sm=>{
+    return `<li style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:8px;width:100%;"><span style="flex:1;">${sm.emoji} ${sm.name}</span><button class="admin-btn admin-btn-blue" style="padding:4px 10px;font-size:0.72rem;" onclick="openStaticEdit('${sm.key}')">✏️ এডিট</button></div></li>`;
+  }).join('');
+}
+
+function openStaticEdit(key){
+  const sm=STATIC_MEMBERS.find(s=>s.key===key); if(!sm) return;
+  const saved=_staticProfiles[key]||{};
+  document.getElementById('seKey').value=key;
+  document.getElementById('seName').textContent=sm.name+' ('+sm.role+')';
+  document.getElementById('seBio').value=saved.bio||'';
+  document.getElementById('seEdu').value=saved.edu||'';
+  document.getElementById('seExp').value=saved.exp||'';
+  document.getElementById('seWeb').value=saved.web||'';
+  document.getElementById('seYt').value=saved.yt||'';
+  document.getElementById('sePhoto').value=saved.photo||sm.photo||'';
+  document.getElementById('staticEditModal').style.display='flex';
+}
+function closeStaticEdit(){ document.getElementById('staticEditModal').style.display='none'; }
+
+async function saveStaticEdit(){
+  const key=document.getElementById('seKey').value;
+  let photo=document.getElementById('sePhoto').value.trim();
+  // Try upload
+  const fileInput=document.getElementById('sePhotoFile');
+  if(fileInput?.files?.length){
+    const sm=STATIC_MEMBERS.find(s=>s.key===key);
+    const uploaded=await uploadMemberPhoto(fileInput.files[0], sm?.name||key);
+    if(uploaded) photo=uploaded;
+  }
+  _staticProfiles[key]={
+    bio:document.getElementById('seBio').value.trim(),
+    edu:document.getElementById('seEdu').value.trim(),
+    exp:document.getElementById('seExp').value.trim(),
+    web:document.getElementById('seWeb').value.trim(),
+    yt:document.getElementById('seYt').value.trim(),
+    photo
+  };
+  await dataSet('staticProfiles', _staticProfiles);
+  wireProfileButtons();
+  closeStaticEdit();
+  showMsg('staticEditMsg');
+}
+
+/* ══════════════════════════════════════
+   PROFILE OVERLAY
+══════════════════════════════════════ */
+function showProfile(dataInput){
+  try{
+    const data = typeof dataInput==='string' ? JSON.parse(dataInput) : dataInput;
+    const em=data.emoji||'👤';
+    document.getElementById('pAvatar').innerHTML=data.photo
+      ? `<img src="${data.photo}" alt="" onerror="this.parentNode.innerHTML='<span class=\\'fallback\\'>${em}</span>'">`
+      : `<span class="fallback">${em}</span>`;
+    document.getElementById('pName').textContent=data.name||'';
+    document.getElementById('pRole').textContent=data.role||'';
+    document.getElementById('pOrg').textContent=data.org||'গুঞ্জরণ';
+    document.getElementById('pBio').textContent=data.bio||'প্রোফাইল তথ্য এখনো যোগ করা হয়নি।';
+    document.getElementById('pEduWrap').style.display=data.edu?'block':'none';
+    document.getElementById('pEdu').textContent=data.edu||'';
+    document.getElementById('pExpWrap').style.display=data.exp?'block':'none';
+    document.getElementById('pExp').textContent=data.exp||'';
+    /* Social links with original logos */
+    let soc='';
+    if(data.fb) soc+=`<a href="${data.fb}" target="_blank" class="psoc-fb"><svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><path fill="white" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>`;
+    if(data.yt)  soc+=`<a href="${data.yt}" target="_blank" class="psoc-yt"><svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube</a>`;
+    if(data.web) soc+=`<a href="${data.web}" target="_blank" class="psoc-web"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="white" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> ওয়েবসাইট</a>`;
+    document.getElementById('pSocial').innerHTML=soc;
+    document.getElementById('profileOverlay').classList.add('active');
+    document.body.style.overflow='hidden';
+    history.pushState({profile:true},'','#profile');
+  }catch(e){console.error('Profile error:',e);}
+}
+function closeProfile(){
+  document.getElementById('profileOverlay').classList.remove('active');
+  document.body.style.overflow='';
+  if(location.hash==='#profile') history.back();
+}
+window.addEventListener('popstate',()=>{
+  if(document.getElementById('profileOverlay').classList.contains('active')){
+    document.getElementById('profileOverlay').classList.remove('active');
+    document.body.style.overflow='';
   }
 });
 
-document.addEventListener('DOMContentLoaded',()=>{
-  const form=document.querySelector('form');
+/* ══════════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════════ */
+function openAdmin(){
+  document.getElementById('adminOverlay').classList.add('active');
+  if(adminLoggedIn) _loadAdminData();
+}
+function closeAdmin(){ document.getElementById('adminOverlay').classList.remove('active'); }
 
-  if(form){
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-
-      const data = new FormData(form);
-
-      fetch(form.action,{
-        method:'POST',
-        body:data,
-        headers:{'Accept':'application/json'}
-      }).then(()=>{
-        document.body.innerHTML = `
-        <div style="min-height:100vh;background:linear-gradient(160deg,#06102b 0%,#0d1f4a 45%,#1B3070 100%);display:flex;align-items:center;justify-content:center;padding:24px;font-family:'Hind Siliguri',sans-serif;">
-          <div style="background:linear-gradient(160deg,rgba(255,255,255,0.07),rgba(40,120,168,0.06));border:1px solid rgba(255,255,255,0.13);border-radius:24px;padding:52px 44px;text-align:center;max-width:520px;width:100%;backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,0.4);">
-            
-            <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2878A8,#1B3070);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
-              <svg viewBox="0 0 24 24" fill="none" width="40" height="40">
-                <path d="M5 12.5L9.5 17L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-
-            <h1 style="font-size:1.7rem;color:#fff;margin-bottom:18px;">আপনার বার্তা সফল ভাবে পাঠানো হয়েছে!</h1>
-
-            <div style="font-size:1rem;line-height:2;color:rgba(255,255,255,0.82);background:rgba(40,120,168,0.1);padding:20px;border-radius:14px;margin-bottom:28px;">
-              আমাদেরকে বার্তা পাঠানোর জন্য <strong>ধন্যবাদ</strong><br>
-              খুব শীঘ্রই আমরা আপনার সাথে যোগাযোগ করবো — ইনশা আল্লাহ।
-            </div>
-
-            <button onclick="window.location.reload()" style="background:linear-gradient(135deg,#D42B2B,#a01818);color:#fff;border:none;padding:14px 30px;border-radius:10px;font-size:0.95rem;font-weight:700;cursor:pointer;">
-              ← মূল পেজে ফিরে যান
-            </button>
-
-          </div>
-        </div>`;
-      });
-    });
+function adminLogin(){
+  const val=document.getElementById('adminPassInput').value;
+  if(_checkPass(val)){
+    adminLoggedIn=true;
+    document.getElementById('adminLoginSection').style.display='none';
+    document.getElementById('adminMain').style.display='block';
+    _loadAdminData();
+  } else {
+    document.getElementById('adminLoginErr').style.display='block';
+    setTimeout(()=>document.getElementById('adminLoginErr').style.display='none',2000);
   }
+}
+
+async function _loadAdminData(){
+  const d = await dataGet('stats') || DEF_STATS;
+  d.forEach((v,i)=>{ const el=document.getElementById('as'+i); if(el) el.value=v; });
+  renderYtAdminList();
+  renderTeamAdminList();
+  renderStaticMemberAdminList();
+}
+
+function adminSwitchTab(i){
+  document.querySelectorAll('.admin-tab').forEach((t,j)=>t.classList.toggle('active',i===j));
+  document.querySelectorAll('.admin-section').forEach((s,j)=>s.classList.toggle('active',i===j));
+}
+
+/* Password change */
+function changeAdminPass(){
+  const cur=document.getElementById('passOld').value;
+  const n1=document.getElementById('passNew1').value;
+  const n2=document.getElementById('passNew2').value;
+  if(!_checkPass(cur)){ alert('বর্তমান পাসওয়ার্ড ভুল!'); return; }
+  if(n1.length<6){ alert('নতুন পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।'); return; }
+  if(n1!==n2){ alert('নতুন পাসওয়ার্ড দুটো মিলছে না!'); return; }
+  _setPass(n1);
+  ['passOld','passNew1','passNew2'].forEach(id=>document.getElementById(id).value='');
+  showMsg('passMsg');
+}
+
+function showMsg(id){ const el=document.getElementById(id); if(el){ el.style.display='block'; setTimeout(()=>el.style.display='none',2500); } }
+
+/* ══════════════════════════════════════
+   CONTACT FORM
+══════════════════════════════════════ */
+function initContactForm(){
+  const form=document.querySelector('form');
+  if(!form) return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+    .then(()=>{
+      document.body.innerHTML=`<div style="min-height:100vh;background:linear-gradient(160deg,#06102b 0%,#0d1f4a 45%,#1B3070 100%);display:flex;align-items:center;justify-content:center;padding:24px;font-family:'Hind Siliguri',sans-serif;"><div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:24px;padding:52px 44px;text-align:center;max-width:520px;width:100%;"><div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#2878A8,#1B3070);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;"><svg viewBox="0 0 24 24" fill="none" width="40" height="40"><path d="M5 12.5L9.5 17L19 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h1 style="font-size:1.7rem;color:#fff;margin-bottom:18px;">আপনার বার্তা সফলভাবে পাঠানো হয়েছে!</h1><div style="color:rgba(255,255,255,0.82);background:rgba(40,120,168,0.1);padding:20px;border-radius:14px;margin-bottom:28px;line-height:2;">আমাদেরকে বার্তা পাঠানোর জন্য <strong>ধন্যবাদ</strong><br>খুব শীঘ্রই আমরা আপনার সাথে যোগাযোগ করবো — ইনশা আল্লাহ।</div><button onclick="window.location.reload()" style="background:linear-gradient(135deg,#D42B2B,#a01818);color:#fff;border:none;padding:14px 30px;border-radius:10px;font-size:0.95rem;font-weight:700;cursor:pointer;">← মূল পেজে ফিরে যান</button></div></div>`;
+    });
+  });
+}
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', async ()=>{
+  // Overlay close on backdrop click
+  document.getElementById('adminOverlay').addEventListener('click',function(e){ if(e.target===this) closeAdmin(); });
+  document.getElementById('ytTabSel')?.addEventListener('change', renderYtAdminList);
+  // Load data
+  await loadStaticProfiles();
+  await loadStats();
+  await renderYtSection();
+  await renderCustomMembers();
+  setTimeout(wireProfileButtons, 150);
+  initContactForm();
 });
 </script>
 </body>
