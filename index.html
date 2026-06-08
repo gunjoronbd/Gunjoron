@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>গুঞ্জরণ | GUNJORON</title>
+<title><span translate="no" lang="bn">গুঞ্জরণ</span> | GUNJORON</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -19,7 +19,7 @@
   nav{position:fixed;top:0;width:100%;z-index:1000;
     background:linear-gradient(90deg,rgba(10,18,60,0.98) 0%,rgba(20,35,90,0.98) 100%);
     backdrop-filter:blur(14px);padding:8px 4%;
-    display:flex;align-items:center;justify-content:space-between;position:relative;
+    display:flex;align-items:center;justify-content:space-between;
     box-shadow:0 2px 24px rgba(0,0,0,0.45),0 1px 0 rgba(40,120,168,0.3);}
   .nav-logo img{height:48px;object-fit:contain;display:block;border-radius:4px;}
   .nav-logo{
@@ -35,7 +35,6 @@
     left:50%;
     transform:translateX(-50%) scale(0.96);
   }
-  nav{position:fixed;}
   .nav-links{display:flex;gap:6px;list-style:none;}
   
   /* ডেক্সটপ ভিউতে মেনু একদম মাঝে রাখার জন্য */
@@ -44,15 +43,17 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+      align-items: center;
     }
   }
 
   .nav-links a{color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;
     padding:7px 13px;border-radius:8px;
     background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);
-    transition:all 0.22s;letter-spacing:0.2px;white-space:nowrap;}
-  .nav-links a:hover{background:var(--red);border-color:var(--red);
-    transform:translateY(-2px);box-shadow:0 4px 14px rgba(212,43,43,0.5);}
+    transition:background 0.22s,border-color 0.22s;letter-spacing:0.2px;white-space:nowrap;
+    display:inline-flex;align-items:center;height:34px;box-sizing:border-box;}
+  .nav-links a:hover{background:var(--red);border-color:var(--red);}
+  .nav-links li{display:flex;align-items:center;}
     
   /* আপডেট করা প্রফেশনাল যোগাযোগ বাটন */
   .nav-cta{background:linear-gradient(135deg,var(--red),#a01818);color:#fff;
@@ -320,10 +321,10 @@
   #adminNavBtn{color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;
     padding:7px 13px;border-radius:8px;
     background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);
-    transition:all 0.22s;letter-spacing:0.2px;white-space:nowrap;cursor:pointer;
-    font-family:'Hind Siliguri',sans-serif;}
-  #adminNavBtn:hover{background:var(--red);border-color:var(--red);
-    transform:translateY(-2px);box-shadow:0 4px 14px rgba(212,43,43,0.5);}
+    transition:background 0.22s,border-color 0.22s;letter-spacing:0.2px;white-space:nowrap;
+    cursor:pointer;font-family:'Hind Siliguri',sans-serif;
+    display:inline-flex;align-items:center;height:34px;box-sizing:border-box;}
+  #adminNavBtn:hover{background:var(--red);border-color:var(--red);}
   #adminOverlay{display:none;position:fixed;inset:0;z-index:9500;
     background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);}
   #adminOverlay.active{display:flex;align-items:flex-start;justify-content:center;padding:20px;}
@@ -574,7 +575,7 @@
 <section class="sectors" id="sectors">
   <div class="section-header">
     <div class="section-tag">আমাদের সেক্টর</div>
-    <h2 class="section-title">গুঞ্জরণের <span>চারটি বিভাগ</span></h2>
+    <h2 class="section-title"><span translate="no" lang="bn">গুঞ্জরণ</span>ের <span>চারটি বিভাগ</span></h2>
     <div class="section-line"></div>
   </div>
   <div class="sectors-grid">
@@ -618,21 +619,21 @@
     <button class="tab-btn" onclick="switchTab(3)">🎙️ ওয়াজ</button>
   </div>
   <div class="tab-content active" id="tab-0">
-    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/Pb8jy0LUSdo?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>গুঞ্জরণ নাশিদ</h4><p>গুঞ্জরণ স্টুডিও</p></div></div>
-    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/m85KmyQIBkY?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>গুঞ্জরণ নাশিদ</h4><p>গুঞ্জরণ স্টুডিও</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/Pb8jy0LUSdo?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4><span translate="no" lang="bn">গুঞ্জরণ</span> নাশিদ</h4><p><span translate="no" lang="bn">গুঞ্জরণ</span> স্টুডিও</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/m85KmyQIBkY?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4><span translate="no" lang="bn">গুঞ্জরণ</span> নাশিদ</h4><p><span translate="no" lang="bn">গুঞ্জরণ</span> স্টুডিও</p></div></div>
     <div class="more-card" style="background:linear-gradient(135deg,var(--navy),var(--teal));" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">▶</div><h4>আরও নাশিদ দেখুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
   </div>
   <div class="tab-content" id="tab-1">
-    <div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4>গুঞ্জরণ ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন.</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>
+    <div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4><span translate="no" lang="bn">গুঞ্জরণ</span> ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন.</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>
   </div>
   <div class="tab-content" id="tab-2">
-    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/DXMqysCxJX8?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p>গুঞ্জরণ তিলাওয়াত</p></div></div>
-    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/JjeyS553jFs?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p>গুঞ্জরণ তিলাওয়াত</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/DXMqysCxJX8?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p><span translate="no" lang="bn">গুঞ্জরণ</span> তিলাওয়াত</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/JjeyS553jFs?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>কুরআন তিলাওয়াত</h4><p><span translate="no" lang="bn">গুঞ্জরণ</span> তিলাওয়াত</p></div></div>
     <div class="more-card" style="background:linear-gradient(135deg,#1a5c2e,#2e9b4e);" onclick="window.open('https://www.youtube.com/@gunjoron-tilawat','_blank')"><div class="more-card-inner"><div class="icon">📖</div><h4>আরও তিলাওয়াত শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
   </div>
   <div class="tab-content" id="tab-3">
-    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/wb9DNp8y6Tw?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>ইসলামি ওয়াজ</h4><p>গুঞ্জরণ ওয়াজ</p></div></div>
-    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/i3AL4IpmGoY?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>ইসলামি ওয়াজ</h4><p>গুঞ্জরণ ওয়াজ</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/wb9DNp8y6Tw?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>ইসলামি ওয়াজ</h4><p><span translate="no" lang="bn">গুঞ্জরণ</span> ওয়াজ</p></div></div>
+    <div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/i3AL4IpmGoY?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>ইসলামি ওয়াজ</h4><p><span translate="no" lang="bn">গুঞ্জরণ</span> ওয়াজ</p></div></div>
     <div class="more-card" style="background:linear-gradient(135deg,#6b2fa0,#9b4dca);" onclick="window.open('https://www.youtube.com/@gunjoronwaz','_blank')"><div class="more-card-inner"><div class="icon">🎙️</div><h4>আরও ওয়াজ শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>
   </div>
 </section>
@@ -640,12 +641,12 @@
 <section class="about" id="about">
   <div class="section-header">
     <div class="section-tag">আমাদের পরিচিতি</div>
-    <h2 class="section-title" style="color:#fff;">গুঞ্জরণ — <span style="background:linear-gradient(135deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">পরিচিতি</span></h2>
+    <h2 class="section-title" style="color:#fff;"><span translate="no" lang="bn" style="color:#fff;-webkit-text-fill-color:#fff;">গুঞ্জরণ</span> — <span style="background:linear-gradient(135deg,var(--gold),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">পরিচিতি</span></h2>
     <div class="section-line"></div>
   </div>
   <div class="about-body">
-    <p class="about-intro"><strong>গুঞ্জরণ</strong> একটি ইসলামিক সাংস্কৃতিক ও সৃজনশীল মিডিয়া উদ্যোগ। আমাদের উদ্দেশ্য হলো সুস্থ সংস্কৃতির চর্চা, নৈতিক মূল্যবোধের প্রসার এবং ইসলামের সৌন্দর্যময় বার্তাকে আধুনিক ও গ্রহণযোগ্য উপস্থাপনার মাধ্যমে মানুষের কাছে পৌঁছে দেওয়া।</p>
-    <p class="about-intro">বর্তমান সময়ে যখন নানা অপসংস্কৃতি সমাজের চিন্তা ও রুচিকে প্রভাবিত করছে, তখন আমরা বিশ্বাস করি — সুন্দর, শালীন ও অর্থবহ কনটেন্টই হতে পারে ইতিবাচক পরিবর্তনের কার্যকর মাধ্যম। সেই বিশ্বাস থেকেই গুঞ্জরণের পথচলা।</p>
+    <p class="about-intro"><strong><span translate="no" lang="bn">গুঞ্জরণ</span></strong> একটি ইসলামিক সাংস্কৃতিক ও সৃজনশীল মিডিয়া উদ্যোগ। আমাদের উদ্দেশ্য হলো সুস্থ সংস্কৃতির চর্চা, নৈতিক মূল্যবোধের প্রসার এবং ইসলামের সৌন্দর্যময় বার্তাকে আধুনিক ও গ্রহণযোগ্য উপস্থাপনার মাধ্যমে মানুষের কাছে পৌঁছে দেওয়া।</p>
+    <p class="about-intro">বর্তমান সময়ে যখন নানা অপসংস্কৃতি সমাজের চিন্তা ও রুচিকে প্রভাবিত করছে, তখন আমরা বিশ্বাস করি — সুন্দর, শালীন ও অর্থবহ কনটেন্টই হতে পারে ইতিবাচক পরিবর্তনের কার্যকর মাধ্যম। সেই বিশ্বাস থেকেই <span translate="no" lang="bn">গুঞ্জরণ</span>ের পথচলা।</p>
     <div class="about-work">
       <h4>আমাদের কাজের পরিধি —</h4>
       <ul>
@@ -655,7 +656,7 @@
       </ul>
     </div>
     <p class="about-intro">আমরা এমন কনটেন্ট নির্মাণে প্রতিশ্রুতিবদ্ধ, যা শুধু বিনোদনের সীমায় আবদ্ধ নয়; বরং চিন্তার জগতে ইতিবাচক প্রভাব সৃষ্টি করে, হৃদয়ে জাগায় নৈতিকতা ও সৌন্দর্যের অনুভব, এবং ইসলামী মূল্যবোধের প্রতি মানুষকে উদ্বুদ্ধ করে।</p>
-    <p class="about-intro"><strong>গুঞ্জরণ</strong> কেবল একটি প্রতিষ্ঠান নয়; এটি একটি দায়িত্বশীল সাংস্কৃতিক অঙ্গীকার — যার লক্ষ্য সমাজে কল্যাণকর পরিবর্তনের ধ্বনি ছড়িয়ে দেওয়া।</p>
+    <p class="about-intro"><strong><span translate="no" lang="bn">গুঞ্জরণ</span></strong> কেবল একটি প্রতিষ্ঠান নয়; এটি একটি দায়িত্বশীল সাংস্কৃতিক অঙ্গীকার — যার লক্ষ্য সমাজে কল্যাণকর পরিবর্তনের ধ্বনি ছড়িয়ে দেওয়া।</p>
     <div class="about-closing">এই পথচলায় সকলের দোয়া, সহযোগিতা ও আন্তরিক অংশগ্রহণ আমাদের এগিয়ে চলার প্রেরণা।</div>
   </div>
 </section>
@@ -722,8 +723,8 @@
     <div class="team-grid" id="grid-alem">
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Mamunul Hok.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/maolanamamunulhaque" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মাওলানা মামুনুল হক</h4><p style="color:#6b2fa0;">আলেম</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Sakawat Hosain Raji.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/shakhaowat.hossain.52" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুফতি সাকাওয়াত হুসাইন রাজি</h4><p style="color:#6b2fa0;">আলেম</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Habibullah mahmud Kasemi.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div></div><h4>মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী</h4><p style="color:#6b2fa0;">আলেম</p></div>
-      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Oli Ullah.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div></div><h4>মুফতি ওয়ালি উল্লাহ</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Habibullah mahmud Kasemi.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী</h4><p style="color:#6b2fa0;">আলেম</p></div>
+      <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Oli Ullah.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মুফতি ওয়ালি উল্লাহ</h4><p style="color:#6b2fa0;">আলেম</p></div>
       <div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:#6b2fa0;"><img loading="lazy" decoding="async" src="Ibrahim Sulatn.jpg" alt="" onerror="this.parentNode.innerHTML='<span class=\'fallback\'>🎙️</span>'"></div><button class="profile-btn" data-fb="https://www.facebook.com/MawlanaIbrahimSultan" title="প্রোফাইল দেখুন"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button></div><h4>মাওলানা ইবরাহিম সুলতান</h4><p style="color:#6b2fa0;">আলেম</p></div>
       <div id="grid-alem-custom"></div>
     </div>
@@ -738,7 +739,7 @@
   </div>
   <div class="contact-grid">
     <div class="contact-info">
-      <h3>গুঞ্জরণের সাথে যুক্ত হন</h3>
+      <h3><span translate="no" lang="bn">গুঞ্জরণ</span>ের সাথে যুক্ত হন</h3>
       <p>স্টুডিও বুকিং, কন্টেন্ট তৈরি, স্পন্সরশিপ বা যেকোনো বিষয়ে আমাদের সাথে যোগাযোগ করুন.</p>
       <div class="contact-item">
         <div class="contact-icon ci-navy">📍</div>
@@ -765,8 +766,8 @@
     <div class="contact-form">
       <form action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="40ed0ee3-1d0a-469b-af2c-b72febd3a513">
-        <input type="hidden" name="subject" value="গুঞ্জরণ ওয়েবসাইট — নতুন বার্তা">
-        <input type="hidden" name="from_name" value="গুঞ্জরণ ওয়েবসাইট">
+        <input type="hidden" name="subject" value="<span translate="no" lang="bn">গুঞ্জরণ</span> ওয়েবসাইট — নতুন বার্তা">
+        <input type="hidden" name="from_name" value="<span translate="no" lang="bn">গুঞ্জরণ</span> ওয়েবসাইট">
         <input type="hidden" name="redirect" value="thankyou.html">
         <div class="form-group"><label>আপনার নাম</label><input type="text" name="name" placeholder="পূর্ণ নাম লিখুন" required></div>
         <div class="form-group"><label>ফোন নম্বর</label><input type="tel" name="phone" placeholder="+880 ×××-×××-××××"></div>
@@ -791,7 +792,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <img loading="lazy" decoding="async" src="https://drive.google.com/uc?export=view&id=1GH3bpQCTCGV4rFQZWeXrI4XIfGU7PfYM" alt="গুঞ্জরণ" onerror="this.style.display='none'">
+      <img loading="lazy" decoding="async" src="logo.png" alt="গুঞ্জরণ" onerror="this.src='logoA.gif';this.onerror=function(){this.style.display='none'}">
       <p>অপসংস্কৃতির কালো হাত ভেঙে চূর্ণ-বিচূর্ণ করে, সুস্থ সংস্কৃতির জয় গান ছড়িয়ে দিতে আমরা এগিয়ে চলেছি দৃঢ় প্রত্যয়ে। আমাদের লক্ষ্য — সারা দুনিয়ায় নৈতিকতা, সৌন্দর্য আর ইসলামী মূল্যবোধের আলো ছড়িয়ে দেওয়া।</p>
     </div>
     <div class="footer-col">
@@ -828,7 +829,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© ২০২৬ গুঞ্জরণ (GUNJORON) — সর্বস্বত্ব সংরক্ষিত</p>
+    <p>© ২০২৬ <span translate="no" lang="bn">গুঞ্জরণ</span> (GUNJORON) — সর্বস্বত্ব সংরক্ষিত</p>
   </div>
 </footer>
 
@@ -979,9 +980,13 @@
       <h3 style="font-size:1rem;font-weight:700;" id="seName">প্রোফাইল এডিট</h3>
       <button class="admin-close" onclick="closeStaticEdit()">✕</button>
     </div>
-    <input type="hidden" id="seKey">
+    <input type="hidden" id="seIdx">
+    <div class="admin-field"><label>নাম</label><input type="text" id="seNameEdit" placeholder="সদস্যের নাম"></div>
+    <div class="admin-field"><label>পদবি / ভূমিকা</label><input type="text" id="seRoleEdit" placeholder="যেমন: নাশিদ শিল্পী"></div>
+    <div class="admin-field"><label>Facebook লিংক</label><input type="text" id="seFbEdit" placeholder="https://facebook.com/..."></div>
+    <hr class="admin-divider">
     <div class="admin-field"><label>ছবি আপলোড করুন (সরাসরি — সবচেয়ে ভালো)</label><input type="file" id="sePhotoFile" accept="image/*" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);"></div>
-    <div class="admin-field"><label>অথবা ছবির URL (ImgBB/Imgur/Google Drive)</label><input type="text" id="sePhoto" placeholder="https://i.ibb.co/..."></div>
+    <div class="admin-field"><label>অথবা ছবির URL (ImgBB/Imgur)</label><input type="text" id="sePhoto" placeholder="https://i.ibb.co/..."></div>
     <div class="admin-field"><label>সংক্ষিপ্ত পরিচিতি</label><textarea id="seBio" placeholder="এই সদস্য সম্পর্কে কিছু লিখুন..."></textarea></div>
     <div class="admin-field"><label>শিক্ষা / যোগ্যতা</label><input type="text" id="seEdu" placeholder="যেমন: দাওরায়ে হাদিস"></div>
     <div class="admin-field"><label>অভিজ্ঞতা</label><input type="text" id="seExp" placeholder="যেমন: ৫ বছরের অভিজ্ঞতা"></div>
@@ -991,7 +996,7 @@
       <button class="admin-btn admin-btn-green" onclick="saveStaticEdit()">✓ সেভ করুন</button>
       <button class="admin-btn" style="background:rgba(255,255,255,0.1);" onclick="closeStaticEdit()">বাতিল</button>
     </div>
-    <div class="admin-msg" id="staticEditMsg" style="margin-top:8px;">প্রোফাইল সেভ হয়েছে!</div>
+    <div class="admin-msg" id="staticEditMsg" style="margin-top:8px;">সেভ হয়েছে!</div>
   </div>
 </div>
 
@@ -999,31 +1004,25 @@
 
 <script>
 /* ══════════════════════════════════════════════════════
-   গুঞ্জরণ ওয়েবসাইট — সম্পূর্ণ স্ক্রিপ্ট v3
+   গুঞ্জরণ ওয়েবসাইট — সম্পূর্ণ স্ক্রিপ্ট v4
    Supabase + LocalStorage fallback
 ══════════════════════════════════════════════════════ */
 
-/* ── SUPABASE CONFIG (obfuscated) ── */
 const _cfg = {
   u: atob('aHR0cHM6Ly9maHRuc2lvZXBmdW1lbHBrZ2Vvei5zdXBhYmFzZS5jbw=='),
   k: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZodG5zaW9lcGZ1bWVscGtnZW96Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MzM2MzgsImV4cCI6MjA5NjQwOTYzOH0.JQ-TOpPmdhQwIJmtryYIX9v_srQnf8M7sUWU5xdSKjI'
 };
 
-/* ── ADMIN PASSWORD (hashed via simple obfuscation) ── */
 let _adminPass = localStorage.getItem('gjAdminPass') || btoa('gunjoron2024');
-function _checkPass(input){ return btoa(input) === _adminPass; }
-function _setPass(newPass){ _adminPass = btoa(newPass); localStorage.setItem('gjAdminPass', _adminPass); }
-
+function _checkPass(i){ return btoa(i) === _adminPass; }
+function _setPass(p){ _adminPass = btoa(p); localStorage.setItem('gjAdminPass', _adminPass); }
 let adminLoggedIn = false;
 
-/* ══════════════════════════════════════
-   SUPABASE API WRAPPER
-══════════════════════════════════════ */
+/* ── Supabase helpers ── */
 async function sbGet(table, key){
   try{
-    const r = await fetch(`${_cfg.u}/rest/v1/${table}?key=eq.${encodeURIComponent(key)}&select=value`, {
-      headers:{ apikey: _cfg.k, Authorization: 'Bearer '+_cfg.k }
-    });
+    const r = await fetch(`${_cfg.u}/rest/v1/${table}?key=eq.${encodeURIComponent(key)}&select=value`,
+      { headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k } });
     if(!r.ok) return null;
     const d = await r.json();
     return d.length ? d[0].value : null;
@@ -1038,59 +1037,38 @@ async function sbSet(table, key, value){
     });
   }catch(e){}
 }
-async function sbDel(table, key){
-  try{
-    await fetch(`${_cfg.u}/rest/v1/${table}?key=eq.${encodeURIComponent(key)}`, {
-      method:'DELETE',
-      headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k }
-    });
-  }catch(e){}
-}
-
-/* Upload image to Supabase Storage */
 async function sbUploadImage(file, path){
   try{
     const r = await fetch(`${_cfg.u}/storage/v1/object/gunjoron-images/${path}`, {
       method:'POST',
-      headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k, 'Content-Type': file.type, 'x-upsert':'true' },
+      headers:{ apikey:_cfg.k, Authorization:'Bearer '+_cfg.k, 'Content-Type':file.type, 'x-upsert':'true' },
       body: file
     });
-    if(r.ok){
-      return `${_cfg.u}/storage/v1/object/public/gunjoron-images/${path}`;
-    }
+    if(r.ok) return `${_cfg.u}/storage/v1/object/public/gunjoron-images/${path}`;
     return null;
   }catch(e){ return null; }
 }
 
-/* Smart get: Supabase first, localStorage fallback */
 async function dataGet(key){
-  const sbVal = await sbGet('site_data', key);
-  if(sbVal !== null) return JSON.parse(sbVal);
+  const sb = await sbGet('site_data', key);
+  if(sb !== null) return JSON.parse(sb);
   const ls = localStorage.getItem('gj_'+key);
   return ls ? JSON.parse(ls) : null;
 }
-/* Smart set: both Supabase and localStorage */
 async function dataSet(key, val){
-  const str = JSON.stringify(val);
-  localStorage.setItem('gj_'+key, str);
-  await sbSet('site_data', key, str);
+  const s = JSON.stringify(val);
+  localStorage.setItem('gj_'+key, s);
+  await sbSet('site_data', key, s);
 }
 
-/* ══════════════════════════════════════
-   NAV & TABS
-══════════════════════════════════════ */
+/* ══════════ NAV & SCROLL ══════════ */
 function toggleNav(){ document.getElementById('navbar').classList.toggle('open'); }
 
 function switchTab(i){
   document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',i===j));
   document.querySelectorAll('.tab-content').forEach((t,j)=>t.classList.toggle('active',i===j));
 }
-
-function goToContent(tabIndex){
-  switchTab(tabIndex);
-  const sec=document.getElementById('content');
-  if(sec) window.scrollTo({top:sec.getBoundingClientRect().top+window.scrollY-72,behavior:'smooth'});
-}
+function goToContent(i){ switchTab(i); const s=document.getElementById('content'); if(s) window.scrollTo({top:s.getBoundingClientRect().top+window.scrollY-72,behavior:'smooth'}); }
 
 window.addEventListener('scroll',()=>{
   const nl=document.getElementById('navLogo');
@@ -1098,27 +1076,21 @@ window.addEventListener('scroll',()=>{
   document.querySelector('.scroll-top')?.classList.toggle('visible',window.scrollY>300);
 });
 
-/* ══════════════════════════════════════
-   STATS
-══════════════════════════════════════ */
+/* ══════════ STATS ══════════ */
 const DEF_STATS=['৪+','২০+','১০০+','1M+'];
 async function loadStats(){
-  const d = await dataGet('stats') || DEF_STATS;
-  d.forEach((v,i)=>{ const el=document.getElementById('stat-'+i); if(el) el.textContent=v; });
+  const d=await dataGet('stats')||DEF_STATS;
+  d.forEach((v,i)=>{const el=document.getElementById('stat-'+i);if(el)el.textContent=v;});
 }
 async function saveStats(){
   const vals=[0,1,2,3].map(i=>document.getElementById('as'+i).value.trim()||DEF_STATS[i]);
-  await dataSet('stats', vals);
-  loadStats();
-  showMsg('statsMsg');
+  await dataSet('stats',vals); loadStats(); showMsg('statsMsg');
 }
 
-/* ══════════════════════════════════════
-   YOUTUBE — with Show More
-══════════════════════════════════════ */
+/* ══════════ YOUTUBE ══════════ */
 const MORE_CARDS={
   0:`<div class="more-card" style="background:linear-gradient(135deg,var(--navy),var(--teal));" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">▶</div><h4>আরও নাশিদ দেখুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>`,
-  1:`<div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4>গুঞ্জরণ ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন.</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>`,
+  1:`<div class="more-card" style="background:linear-gradient(135deg,var(--red),#f06060);min-height:280px;" onclick="window.open('https://www.youtube.com/@GunjoronStudio','_blank')"><div class="more-card-inner"><div class="icon">🎬</div><h4><span translate="no" lang="bn">গুঞ্জরণ</span> ফিল্ম ও নাটক</h4><p style="margin-bottom:14px;">ইসলামি নাটক ও শর্টফিল্ম দেখতে আমাদের YouTube চ্যানেল ভিজিট করুন.</p><div style="background:rgba(255,255,255,0.2);padding:7px 18px;border-radius:20px;display:inline-block;font-size:0.8rem;font-weight:700;">YouTube চ্যানেলে যান →</div></div></div>`,
   2:`<div class="more-card" style="background:linear-gradient(135deg,#1a5c2e,#2e9b4e);" onclick="window.open('https://www.youtube.com/@gunjoron-tilawat','_blank')"><div class="more-card-inner"><div class="icon">📖</div><h4>আরও তিলাওয়াত শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>`,
   3:`<div class="more-card" style="background:linear-gradient(135deg,#6b2fa0,#9b4dca);" onclick="window.open('https://www.youtube.com/@gunjoronwaz','_blank')"><div class="more-card-inner"><div class="icon">🎙️</div><h4>আরও ওয়াজ শুনুন</h4><p>YouTube চ্যানেলে যান →</p></div></div>`
 };
@@ -1128,262 +1100,274 @@ const BASE_VIDS={
   2:[{id:'DXMqysCxJX8',title:'কুরআন তিলাওয়াত',channel:'গুঞ্জরণ তিলাওয়াত'},{id:'JjeyS553jFs',title:'কুরআন তিলাওয়াত',channel:'গুঞ্জরণ তিলাওয়াত'}],
   3:[{id:'wb9DNp8y6Tw',title:'ইসলামি ওয়াজ',channel:'গুঞ্জরণ ওয়াজ'},{id:'i3AL4IpmGoY',title:'ইসলামি ওয়াজ',channel:'গুঞ্জরণ ওয়াজ'}]
 };
-const SHOW_INIT = 3; // প্রথমে এতগুলো দেখাবে
-
-function buildYtCard(v){
-  return `<div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>${v.title}</h4><p>${v.channel}</p></div></div>`;
-}
-
+const SHOW_INIT=3;
+function buildYtCard(v){ return `<div class="yt-card"><iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1" allowfullscreen allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe><div class="yt-card-info"><h4>${v.title}</h4><p>${v.channel}</p></div></div>`; }
 async function renderYtSection(){
-  const saved = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
+  const saved=await dataGet('ytVideos')||{0:[],1:[],2:[],3:[]};
   [0,1,2,3].forEach(t=>{
     const c=document.getElementById('tab-'+t); if(!c) return;
     const all=[...(saved[t]||[]),...BASE_VIDS[t]];
-    const visible=all.slice(0,SHOW_INIT);
-    const hidden=all.slice(SHOW_INIT);
-    let html=visible.map(buildYtCard).join('');
-    if(hidden.length>0){
-      html+=`<div id="yt-more-${t}" style="display:none;">${hidden.map(buildYtCard).join('')}</div>`;
-      html+=`<div class="more-card" style="background:linear-gradient(135deg,rgba(27,48,112,0.7),rgba(40,120,168,0.5));cursor:pointer;" id="show-more-btn-${t}" onclick="showMoreYt(${t})"><div class="more-card-inner"><div class="icon">⬇️</div><h4>আরও ${hidden.length}টি ভিডিও দেখুন</h4><p>ক্লিক করুন →</p></div></div>`;
-    }
-    html+=MORE_CARDS[t];
-    c.innerHTML=html;
+    const vis=all.slice(0,SHOW_INIT), hid=all.slice(SHOW_INIT);
+    let html=vis.map(buildYtCard).join('');
+    if(hid.length) html+=`<div id="yt-more-${t}" style="display:none;">${hid.map(buildYtCard).join('')}</div><div class="more-card" style="background:linear-gradient(135deg,rgba(27,48,112,0.7),rgba(40,120,168,0.5));cursor:pointer;" id="show-more-btn-${t}" onclick="showMoreYt(${t})"><div class="more-card-inner"><div class="icon">⬇️</div><h4>আরও ${hid.length}টি ভিডিও দেখুন</h4><p>ক্লিক করুন →</p></div></div>`;
+    html+=MORE_CARDS[t]; c.innerHTML=html;
   });
 }
-function showMoreYt(t){
-  document.getElementById('yt-more-'+t).style.display='contents';
-  document.getElementById('show-more-btn-'+t).style.display='none';
-}
-
-function extractYtId(val){
-  val=val.trim();
-  const m=val.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([a-zA-Z0-9_-]{11})/);
-  if(m) return m[1];
-  if(/^[a-zA-Z0-9_-]{11}$/.test(val)) return val;
-  return null;
-}
+function showMoreYt(t){ document.getElementById('yt-more-'+t).style.display='contents'; document.getElementById('show-more-btn-'+t).style.display='none'; }
+function extractYtId(val){ val=val.trim(); const m=val.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/))([a-zA-Z0-9_-]{11})/); if(m) return m[1]; if(/^[a-zA-Z0-9_-]{11}$/.test(val)) return val; return null; }
 async function addYtVideo(){
   const tab=document.getElementById('ytTabSel').value;
   const vid=extractYtId(document.getElementById('ytUrl').value);
   if(!vid){ alert('সঠিক YouTube Video ID বা URL দিন।'); return; }
-  const title=document.getElementById('ytTitle').value.trim()||'গুঞ্জরণ ভিডিও';
-  const ch=document.getElementById('ytChannel').value.trim()||'গুঞ্জরণ';
-  const d = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
-  d[tab].unshift({id:vid,title,channel:ch});
-  await dataSet('ytVideos', d);
-  renderYtSection(); renderYtAdminList();
+  const d=await dataGet('ytVideos')||{0:[],1:[],2:[],3:[]};
+  d[tab].unshift({id:vid,title:document.getElementById('ytTitle').value.trim()||'গুঞ্জরণ ভিডিও',channel:document.getElementById('ytChannel').value.trim()||'গুঞ্জরণ'});
+  await dataSet('ytVideos',d); renderYtSection(); renderYtAdminList();
   ['ytUrl','ytTitle','ytChannel'].forEach(id=>document.getElementById(id).value='');
   showMsg('ytMsg');
 }
 async function deleteYtVideo(tab,i){
-  const d = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
-  d[tab].splice(i,1);
-  await dataSet('ytVideos', d);
-  renderYtSection(); renderYtAdminList();
+  const d=await dataGet('ytVideos')||{0:[],1:[],2:[],3:[]}; d[tab].splice(i,1);
+  await dataSet('ytVideos',d); renderYtSection(); renderYtAdminList();
 }
 async function renderYtAdminList(){
-  const d = await dataGet('ytVideos') || {0:[],1:[],2:[],3:[]};
-  const sel=document.getElementById('ytTabSel').value;
-  const list=document.getElementById('ytAdminList');
-  const items=d[sel]||[];
+  const d=await dataGet('ytVideos')||{0:[],1:[],2:[],3:[]}; const sel=document.getElementById('ytTabSel').value;
+  const list=document.getElementById('ytAdminList'); const items=d[sel]||[];
   if(!items.length){ list.innerHTML='<li style="color:rgba(255,255,255,0.4);font-size:0.78rem;">কোনো কাস্টম ভিডিও নেই</li>'; return; }
   list.innerHTML=items.map((v,i)=>`<li><span>${v.title} (${v.id})</span><button class="admin-btn admin-btn-red" style="padding:4px 10px;font-size:0.72rem;" onclick="deleteYtVideo('${sel}',${i})">মুছুন</button></li>`).join('');
 }
 
 /* ══════════════════════════════════════
-   STATIC MEMBERS DATABASE
+   STATIC MEMBERS — full DB with order/edit/delete/reorder
 ══════════════════════════════════════ */
-const STATIC_MEMBERS=[
-  {key:'mustafiz-nasheed',  name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'নাশিদ শিল্পী',              photo:'Mustafizur Rahman Junayed.jpg',fb:'https://www.facebook.com/mustafiz.rj',           emoji:'🎵'},
-  {key:'shoieb',            name:'শোয়াইব ইসলাম',             role:'নাশিদ শিল্পী',              photo:'Shoieb Islam.jpg',               fb:'https://www.facebook.com/shoieb.islam.221424',   emoji:'🎵'},
-  {key:'tahsin-nasheed',    name:'মুহাম্মাদ তাহসিন',          role:'নাশিদ শিল্পী',              photo:'Tahsin.jpg',                    fb:'https://www.facebook.com/muhammad.tahsin.212375',emoji:'🎵'},
-  {key:'omarfaruk',         name:'ওমর ফারুক',                 role:'নাশিদ শিল্পী',              photo:'Omor Faruk.jpg',                fb:'https://www.facebook.com/profile.php?id=100075224510619',emoji:'🎵'},
-  {key:'awlad-nasheed',     name:'আব্দুল্লাহ আওলাদ',          role:'নাশিদ শিল্পী',              photo:'Abdullah Awlad.jpg',            fb:'https://www.facebook.com/abdullahawlad1',        emoji:'🎵'},
-  {key:'malek',             name:'আব্দুল মালেক',              role:'নাশিদ শিল্পী',              photo:'Abdul Malek.jpg',               fb:'https://www.facebook.com/abdul.malak.48838',     emoji:'🎵'},
-  {key:'alamin',            name:'আল আমিন',                  role:'নাশিদ শিল্পী',              photo:'Al amin.jpg',                   fb:'https://www.facebook.com/profile.php?id=61582764721807',emoji:'🎵'},
-  {key:'ridoy',             name:'কাউসার মাহমুদ হৃদয়',        role:'নাশিদ শিল্পী',              photo:'Ridoy.jpg',                     fb:'https://www.facebook.com/ridoy.kawsarmahmud',    emoji:'🎵'},
-  {key:'abdurrahman',       name:'আব্দুর রহমান হুযাইফী',       role:'নাশিদ শিল্পী',              photo:'Abdur Rahman.jpg',              fb:'https://www.facebook.com/abdur.rahman.huzaifi.148343',emoji:'🎵'},
-  {key:'arif',              name:'আরিফ বিল্লাহ',              role:'নাশিদ শিল্পী',              photo:'arif.jpg',                      fb:'https://www.facebook.com/arfballh.2024',         emoji:'🎵'},
-  {key:'basir',             name:'আদনান বাছির',               role:'নাশিদ শিল্পী',              photo:'Basir.jpg',                     fb:'https://www.facebook.com/adnan.basir.23275',     emoji:'🎵'},
-  {key:'mustafiz-prod',     name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'ডিরেক্টর, ভিডিও এডিটর ও সিনেমাটোগ্রাফার',photo:'Mustafizur Rahman Junayed.jpg',fb:'https://www.facebook.com/mustafiz.rj',emoji:'🎬'},
-  {key:'muminul',           name:'মুমিনুল ইসলাম',             role:'গল্পকার, পোস্টার ডিজাইনার', photo:'Muminul Islam.jpg',             fb:'https://www.facebook.com/mominulislam38',        emoji:'🎬'},
-  {key:'mujahidul',         name:'মুজাহিদুল ইসলাম',           role:'সহকারী ভিডিও এডিটর',       photo:'Mujahidul Islam.jpg',            fb:'https://www.facebook.com/md.mujahidul.islam.907353',emoji:'🎬'},
-  {key:'aziz',              name:'আব্দুল আজিজ',               role:'সহকারী',                    photo:'Abdul Aziz.jpg',                fb:'https://www.facebook.com/abdulaziz720',          emoji:'🎬'},
-  {key:'abuhurayra',        name:'আবু হুরায়রা খাঁন',           role:'সহকারী',                    photo:'Abu Hurayra.jpg',               fb:'https://www.facebook.com/hm.abuhorira.khan.2024',emoji:'🎬'},
-  {key:'mustafiz-qari',     name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'কারী',                      photo:'Mustafizur Rahman Junayed.jpg',  fb:'https://www.facebook.com/mustafiz.rj',           emoji:'📖'},
-  {key:'awlad-qari',        name:'আব্দুল্লাহ আওলাদ',          role:'কারী',                      photo:'Abdullah Awlad.jpg',            fb:'https://www.facebook.com/abdullahawlad1',        emoji:'📖'},
-  {key:'tahsin-qari',       name:'মুহাম্মাদ তাহসিন',          role:'কারী',                      photo:'Tahsin.jpg',                    fb:'https://www.facebook.com/muhammad.tahsin.212375',emoji:'📖'},
-  {key:'maruf',             name:'মারুফ আহমেদ প্রশ্ন',        role:'কারী',                      photo:'Maruf Ahmed Proshno.jpg',       fb:'https://www.facebook.com/marufahammad.binsalam', emoji:'📖'},
-  {key:'mamunul',           name:'মাওলানা মামুনুল হক',        role:'আলেম',                      photo:'Mamunul Hok.jpg',               fb:'https://www.facebook.com/maolanamamunulhaque',   emoji:'🎙️'},
-  {key:'sakawat',           name:'মুফতি সাকাওয়াত হুসাইন রাজি',role:'আলেম',                     photo:'Sakawat Hosain Raji.jpg',       fb:'https://www.facebook.com/shakhaowat.hossain.52', emoji:'🎙️'},
-  {key:'habibullah',        name:'মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী',role:'আলেম',                photo:'Habibullah mahmud Kasemi.jpg',  fb:'',                                               emoji:'🎙️'},
-  {key:'waliullah',         name:'মুফতি ওয়ালি উল্লাহ',        role:'আলেম',                      photo:'Oli Ullah.jpg',                 fb:'',                                               emoji:'🎙️'},
-  {key:'ibrahim',           name:'মাওলানা ইবরাহিম সুলতান',    role:'আলেম',                      photo:'Ibrahim Sulatn.jpg',            fb:'https://www.facebook.com/MawlanaIbrahimSultan',  emoji:'🎙️'},
+
+/* Default order & data — editable via admin */
+const SM_DEFAULT = [
+  {key:'mustafiz-nasheed',  cat:'nasheed',  name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'নাশিদ শিল্পী',             photo:'Mustafizur Rahman Junayed.jpg',fb:'https://www.facebook.com/mustafiz.rj',           emoji:'🎵'},
+  {key:'shoieb',            cat:'nasheed',  name:'শোয়াইব ইসলাম',             role:'নাশিদ শিল্পী',             photo:'Shoieb Islam.jpg',               fb:'https://www.facebook.com/shoieb.islam.221424',   emoji:'🎵'},
+  {key:'tahsin-nasheed',    cat:'nasheed',  name:'মুহাম্মাদ তাহসিন',          role:'নাশিদ শিল্পী',             photo:'Tahsin.jpg',                    fb:'https://www.facebook.com/muhammad.tahsin.212375',emoji:'🎵'},
+  {key:'omarfaruk',         cat:'nasheed',  name:'ওমর ফারুক',                 role:'নাশিদ শিল্পী',             photo:'Omor Faruk.jpg',                fb:'https://www.facebook.com/profile.php?id=100075224510619',emoji:'🎵'},
+  {key:'awlad-nasheed',     cat:'nasheed',  name:'আব্দুল্লাহ আওলাদ',          role:'নাশিদ শিল্পী',             photo:'Abdullah Awlad.jpg',            fb:'https://www.facebook.com/abdullahawlad1',        emoji:'🎵'},
+  {key:'malek',             cat:'nasheed',  name:'আব্দুল মালেক',              role:'নাশিদ শিল্পী',             photo:'Abdul Malek.jpg',               fb:'https://www.facebook.com/abdul.malak.48838',     emoji:'🎵'},
+  {key:'alamin',            cat:'nasheed',  name:'আল আমিন',                  role:'নাশিদ শিল্পী',             photo:'Al amin.jpg',                   fb:'https://www.facebook.com/profile.php?id=61582764721807',emoji:'🎵'},
+  {key:'ridoy',             cat:'nasheed',  name:'কাউসার মাহমুদ হৃদয়',        role:'নাশিদ শিল্পী',             photo:'Ridoy.jpg',                     fb:'https://www.facebook.com/ridoy.kawsarmahmud',    emoji:'🎵'},
+  {key:'abdurrahman',       cat:'nasheed',  name:'আব্দুর রহমান হুযাইফী',       role:'নাশিদ শিল্পী',             photo:'Abdur Rahman.jpg',              fb:'https://www.facebook.com/abdur.rahman.huzaifi.148343',emoji:'🎵'},
+  {key:'arif',              cat:'nasheed',  name:'আরিফ বিল্লাহ',              role:'নাশিদ শিল্পী',             photo:'arif.jpg',                      fb:'https://www.facebook.com/arfballh.2024',         emoji:'🎵'},
+  {key:'basir',             cat:'nasheed',  name:'আদনান বাছির',               role:'নাশিদ শিল্পী',             photo:'Basir.jpg',                     fb:'https://www.facebook.com/adnan.basir.23275',     emoji:'🎵'},
+  {key:'mustafiz-prod',     cat:'production',name:'মুস্তাফিজুর রহমান জুনায়েদ',role:'ডিরেক্টর, ভিডিও এডিটর ও সিনেমাটোগ্রাফার',photo:'Mustafizur Rahman Junayed.jpg',fb:'https://www.facebook.com/mustafiz.rj',emoji:'🎬'},
+  {key:'muminul',           cat:'production',name:'মুমিনুল ইসলাম',             role:'গল্পকার, পোস্টার ডিজাইনার',photo:'Muminul Islam.jpg',             fb:'https://www.facebook.com/mominulislam38',        emoji:'🎬'},
+  {key:'mujahidul',         cat:'production',name:'মুজাহিদুল ইসলাম',           role:'সহকারী ভিডিও এডিটর',      photo:'Mujahidul Islam.jpg',            fb:'https://www.facebook.com/md.mujahidul.islam.907353',emoji:'🎬'},
+  {key:'aziz',              cat:'production',name:'আব্দুল আজিজ',               role:'সহকারী',                   photo:'Abdul Aziz.jpg',                fb:'https://www.facebook.com/abdulaziz720',          emoji:'🎬'},
+  {key:'abuhurayra',        cat:'production',name:'আবু হুরায়রা খাঁন',           role:'সহকারী',                   photo:'Abu Hurayra.jpg',               fb:'https://www.facebook.com/hm.abuhorira.khan.2024',emoji:'🎬'},
+  {key:'mustafiz-qari',     cat:'qari',     name:'মুস্তাফিজুর রহমান জুনায়েদ', role:'কারী',                     photo:'Mustafizur Rahman Junayed.jpg',  fb:'https://www.facebook.com/mustafiz.rj',           emoji:'📖'},
+  {key:'awlad-qari',        cat:'qari',     name:'আব্দুল্লাহ আওলাদ',           role:'কারী',                     photo:'Abdullah Awlad.jpg',            fb:'https://www.facebook.com/abdullahawlad1',        emoji:'📖'},
+  {key:'tahsin-qari',       cat:'qari',     name:'মুহাম্মাদ তাহসিন',           role:'কারী',                     photo:'Tahsin.jpg',                    fb:'https://www.facebook.com/muhammad.tahsin.212375',emoji:'📖'},
+  {key:'maruf',             cat:'qari',     name:'মারুফ আহমেদ প্রশ্ন',         role:'কারী',                     photo:'Maruf Ahmed Proshno.jpg',       fb:'https://www.facebook.com/marufahammad.binsalam', emoji:'📖'},
+  {key:'mamunul',           cat:'alem',     name:'মাওলানা মামুনুল হক',         role:'আলেম',                     photo:'Mamunul Hok.jpg',               fb:'https://www.facebook.com/maolanamamunulhaque',   emoji:'🎙️'},
+  {key:'sakawat',           cat:'alem',     name:'মুফতি সাকাওয়াত হুসাইন রাজি', role:'আলেম',                    photo:'Sakawat Hosain Raji.jpg',       fb:'https://www.facebook.com/shakhaowat.hossain.52', emoji:'🎙️'},
+  {key:'habibullah',        cat:'alem',     name:'মুফতি হাবিবুল্লাহ মাহমুদ কাসেমী',role:'আলেম',               photo:'Habibullah mahmud Kasemi.jpg',  fb:'',                                               emoji:'🎙️'},
+  {key:'waliullah',         cat:'alem',     name:'মুফতি ওয়ালি উল্লাহ',         role:'আলেম',                     photo:'Oli Ullah.jpg',                 fb:'',                                               emoji:'🎙️'},
+  {key:'ibrahim',           cat:'alem',     name:'মাওলানা ইবরাহিম সুলতান',     role:'আলেম',                     photo:'Ibrahim Sulatn.jpg',            fb:'https://www.facebook.com/MawlanaIbrahimSultan',  emoji:'🎙️'},
 ];
 
-let _staticProfiles = {}; // loaded from Supabase/LS
+/* Live state — loaded from Supabase/LS, fallback to SM_DEFAULT */
+let _smData   = null; // array of member objects (ordered)
+let _profiles = {};   // key → {bio,edu,exp,web,yt,photo override}
 
-async function loadStaticProfiles(){
-  _staticProfiles = await dataGet('staticProfiles') || {};
+const CAT_META = {
+  nasheed:    { label:'🎵 নাশিদ শিল্পী',   gridId:'grid-nasheed',    color:'var(--teal)' },
+  production: { label:'🎬 প্রোডাকশন টিম', gridId:'grid-production', color:'var(--teal)' },
+  qari:       { label:'📖 কারী সাহেবান',   gridId:'grid-qari',       color:'var(--teal)' },
+  alem:       { label:'🎙️ আলেম প্যানেল',  gridId:'grid-alem',       color:'#6b2fa0'     },
+};
+
+async function loadMemberData(){
+  _smData   = await dataGet('smData')     || JSON.parse(JSON.stringify(SM_DEFAULT));
+  _profiles = await dataGet('smProfiles') || {};
 }
 
-/* profile-btn গুলো JS দিয়ে wire up করা */
-function wireProfileButtons(){
-  document.querySelectorAll('.profile-btn[data-fb]').forEach(btn=>{
-    const nameEl = btn.closest('.team-card')?.querySelector('h4');
-    const roleEl = btn.closest('.team-card')?.querySelector('p');
-    if(!nameEl) return;
-    const name = nameEl.textContent.trim();
-    const role = roleEl?.textContent.trim()||'';
-    const fbUrl = btn.dataset.fb||'';
-    const sm = STATIC_MEMBERS.find(s=>s.name===name)||null;
-    const key = sm?.key||null;
-    const saved = key ? (_staticProfiles[key]||{}) : {};
-    const photoSrc = btn.closest('.team-card')?.querySelector('.team-photo img')?.src||'';
-    const data = {
-      name, role, fb:fbUrl,
-      photo: saved.photo || photoSrc,
-      bio: saved.bio||'',
-      edu: saved.edu||'',
-      exp: saved.exp||'',
-      web: saved.web||'',
-      yt:  saved.yt||'',
-      org: 'গুঞ্জরণ',
-      emoji: sm?.emoji||'👤',
-      staticKey: key
-    };
-    btn.onclick = ()=>showProfile(data);
+/* Profile SVG */
+const P_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+
+function buildStaticCard(m){
+  const pro  = _profiles[m.key]||{};
+  const photo= pro.photo || m.photo;
+  const data = { name:m.name, role:m.role, fb:m.fb, photo,
+    bio:pro.bio||'', edu:pro.edu||'', exp:pro.exp||'',
+    web:pro.web||'', yt:pro.yt||'', org:'গুঞ্জরণ', emoji:m.emoji };
+  const isAlem = m.cat==='alem';
+  const bdrColor = isAlem ? '#6b2fa0' : 'var(--teal)';
+  const roleColor= isAlem ? 'color:#6b2fa0;' : '';
+  const photoHtml= `<img loading="lazy" decoding="async" src="${photo}" alt="" onerror="this.parentNode.innerHTML='<span class=\\'fallback\\'>${m.emoji}</span>'">`;
+  const safe = JSON.stringify(JSON.stringify(data));
+  return `<div class="team-card"><div class="team-photo-wrap"><div class="team-photo" style="border-color:${bdrColor};">${photoHtml}</div><button class="profile-btn" onclick='showProfile(${safe})' title="প্রোফাইল দেখুন">${P_SVG}</button></div><h4>${m.name}</h4><p style="${roleColor}">${m.role}</p></div>`;
+}
+
+function renderStaticGrids(){
+  const cats = ['nasheed','production','qari','alem'];
+  cats.forEach(cat=>{
+    const grid = document.getElementById('grid-'+cat);
+    if(!grid) return;
+    const members = _smData.filter(m=>m.cat===cat);
+    const customContainer = document.getElementById('grid-'+cat+'-custom');
+    /* Replace all children except custom container */
+    const cards = members.map(buildStaticCard).join('');
+    /* We set innerHTML for the static portion (everything before custom container) */
+    grid.innerHTML = cards + (customContainer ? customContainer.outerHTML : '');
   });
 }
 
-/* ══════════════════════════════════════
-   CUSTOM MEMBERS
-══════════════════════════════════════ */
-const CAT_EMOJI={nasheed:'🎵',production:'🎬',qari:'📖',alem:'🎙️'};
+/* ══════════ CUSTOM MEMBERS ══════════ */
+async function getCustomMembers(){ return await dataGet('teamMembers')||{nasheed:[],production:[],qari:[],alem:[]}; }
+async function saveCustomMembers(d){ await dataSet('teamMembers',d); }
 
 function buildCustomCard(m,cat,i){
-  const em=CAT_EMOJI[cat]||'👤';
-  const profileSVG='<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+  const em=CAT_META[cat]?.label?.split(' ')[0]||'👤';
   const ph=m.photo?`<img loading="lazy" src="${m.photo}" alt="" onerror="this.parentNode.innerHTML='<span class=\\'fallback\\'>${em}</span>'">`:`<span class='fallback'>${em}</span>`;
-  const data={...m,emoji:em,org:'গুঞ্জরণ'};
-  return `<div class="team-card"><div class="team-photo-wrap"><div class="team-photo">${ph}</div><button class="profile-btn" title="প্রোফাইল দেখুন" onclick='showProfile(${JSON.stringify(JSON.stringify(data))})'>${profileSVG}</button></div><h4>${m.name}</h4><p>${m.role||''}</p></div>`;
+  const data=JSON.stringify(JSON.stringify({...m,emoji:em,org:'গুঞ্জরণ'}));
+  return `<div class="team-card"><div class="team-photo-wrap"><div class="team-photo">${ph}</div><button class="profile-btn" onclick='showProfile(${data})' title="প্রোফাইল দেখুন">${P_SVG}</button></div><h4>${m.name}</h4><p>${m.role||''}</p></div>`;
 }
-
 async function renderCustomMembers(){
-  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
+  const d=await getCustomMembers();
   ['nasheed','production','qari','alem'].forEach(cat=>{
     const c=document.getElementById('grid-'+cat+'-custom'); if(!c) return;
     c.innerHTML=(d[cat]||[]).map((m,i)=>buildCustomCard(m,cat,i)).join('');
   });
 }
-
 async function addMember(){
   const cat=document.getElementById('memberCat').value;
   const name=document.getElementById('mName').value.trim();
   if(!name){ alert('নাম দিন।'); return; }
-  let photoUrl = document.getElementById('mPhoto').value.trim();
-  // Try to upload if file selected
-  const fileInput = document.getElementById('mPhotoFile');
-  if(fileInput?.files?.length){
-    const uploaded = await uploadMemberPhoto(fileInput.files[0], name);
-    if(uploaded) photoUrl = uploaded;
-  }
-  const member={name,role:document.getElementById('mRole').value.trim(),photo:photoUrl,
+  let photo=document.getElementById('mPhoto').value.trim();
+  const fi=document.getElementById('mPhotoFile');
+  if(fi?.files?.length){ const u=await uploadPhoto(fi.files[0],name); if(u) photo=u; }
+  const d=await getCustomMembers();
+  d[cat].push({name,role:document.getElementById('mRole').value.trim(),photo,
     fb:document.getElementById('mFb').value.trim(),bio:document.getElementById('mBio').value.trim(),
     edu:document.getElementById('mEdu').value.trim(),exp:document.getElementById('mExp').value.trim(),
-    web:document.getElementById('mWeb').value.trim(),yt:document.getElementById('mYt').value.trim()};
-  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
-  d[cat].push(member);
-  await dataSet('teamMembers', d);
-  renderCustomMembers(); renderTeamAdminList();
+    web:document.getElementById('mWeb').value.trim(),yt:document.getElementById('mYt').value.trim()});
+  await saveCustomMembers(d); renderCustomMembers(); renderTeamAdminList();
   ['mName','mRole','mPhoto','mFb','mBio','mEdu','mExp','mWeb','mYt'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  if(fileInput) fileInput.value='';
-  showMsg('memberMsg');
+  if(fi) fi.value=''; showMsg('memberMsg');
 }
-
 async function deleteMember(cat,i){
-  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
-  d[cat].splice(i,1);
-  await dataSet('teamMembers', d);
-  renderCustomMembers(); renderTeamAdminList();
+  const d=await getCustomMembers(); d[cat].splice(i,1);
+  await saveCustomMembers(d); renderCustomMembers(); renderTeamAdminList();
 }
-
 async function renderTeamAdminList(){
-  const d = await dataGet('teamMembers') || {nasheed:[],production:[],qari:[],alem:[]};
-  const all=[];
+  const d=await getCustomMembers(); const all=[];
   Object.entries(d).forEach(([cat,members])=>members.forEach((m,i)=>all.push({cat,i,name:m.name,role:m.role})));
   const list=document.getElementById('teamAdminList');
   if(!all.length){ list.innerHTML='<li style="color:rgba(255,255,255,0.4);font-size:0.78rem;">কোনো কাস্টম সদস্য নেই</li>'; return; }
   list.innerHTML=all.map(m=>`<li><span>${m.name} — ${m.role||''}</span><button class="admin-btn admin-btn-red" style="padding:4px 10px;font-size:0.72rem;" onclick="deleteMember('${m.cat}',${m.i})">মুছুন</button></li>`).join('');
 }
 
-/* ── Image upload to Supabase Storage ── */
-async function uploadMemberPhoto(file, memberName){
-  const ext = file.name.split('.').pop();
-  const path = `members/${memberName.replace(/\s+/g,'-')}-${Date.now()}.${ext}`;
-  const url = await sbUploadImage(file, path);
-  return url;
-}
-
-/* ══════════════════════════════════════
-   STATIC MEMBER PROFILE EDIT
-══════════════════════════════════════ */
-async function renderStaticMemberAdminList(){
+/* ══════════ STATIC MEMBER ADMIN LIST (edit/delete/reorder) ══════════ */
+function renderStaticMemberAdminList(){
   const list=document.getElementById('staticMemberList'); if(!list) return;
-  list.innerHTML=STATIC_MEMBERS.map(sm=>{
-    return `<li style="flex-direction:column;align-items:flex-start;gap:6px;"><div style="display:flex;align-items:center;gap:8px;width:100%;"><span style="flex:1;">${sm.emoji} ${sm.name}</span><button class="admin-btn admin-btn-blue" style="padding:4px 10px;font-size:0.72rem;" onclick="openStaticEdit('${sm.key}')">✏️ এডিট</button></div></li>`;
-  }).join('');
+  const cats=['nasheed','production','qari','alem'];
+  let html='';
+  cats.forEach(cat=>{
+    const members=_smData.filter(m=>m.cat===cat);
+    const meta=CAT_META[cat];
+    html+=`<div style="margin-bottom:16px;"><p style="color:${meta.color};font-size:0.78rem;font-weight:700;margin-bottom:8px;">${meta.label}</p>`;
+    members.forEach((m,localIdx)=>{
+      const globalIdx=_smData.indexOf(m);
+      const isFirst=localIdx===0;
+      const isLast=localIdx===members.length-1;
+      html+=`<div style="display:flex;align-items:center;gap:6px;padding:7px 10px;background:rgba(255,255,255,0.07);border-radius:8px;margin-bottom:5px;">
+        <div style="display:flex;flex-direction:column;gap:2px;">
+          <button class="admin-btn admin-btn-blue" style="padding:2px 7px;font-size:0.65rem;" onclick="smMove(${globalIdx},-1)" ${isFirst?'disabled style="opacity:0.3;padding:2px 7px;font-size:0.65rem;"':''}>▲</button>
+          <button class="admin-btn admin-btn-blue" style="padding:2px 7px;font-size:0.65rem;" onclick="smMove(${globalIdx},1)"  ${isLast?'disabled style="opacity:0.3;padding:2px 7px;font-size:0.65rem;"':''}>▼</button>
+        </div>
+        <span style="flex:1;font-size:0.8rem;color:rgba(255,255,255,0.85);">${m.emoji} ${m.name}</span>
+        <button class="admin-btn admin-btn-blue" style="padding:4px 9px;font-size:0.72rem;" onclick="openSmEdit(${globalIdx})">✏️</button>
+        <button class="admin-btn admin-btn-red"  style="padding:4px 9px;font-size:0.72rem;" onclick="smDelete(${globalIdx})">🗑️</button>
+      </div>`;
+    });
+    html+='</div>';
+  });
+  list.innerHTML=html;
 }
 
-function openStaticEdit(key){
-  const sm=STATIC_MEMBERS.find(s=>s.key===key); if(!sm) return;
-  const saved=_staticProfiles[key]||{};
-  document.getElementById('seKey').value=key;
-  document.getElementById('seName').textContent=sm.name+' ('+sm.role+')';
-  document.getElementById('seBio').value=saved.bio||'';
-  document.getElementById('seEdu').value=saved.edu||'';
-  document.getElementById('seExp').value=saved.exp||'';
-  document.getElementById('seWeb').value=saved.web||'';
-  document.getElementById('seYt').value=saved.yt||'';
-  document.getElementById('sePhoto').value=saved.photo||sm.photo||'';
+/* Move member up/down within same category */
+async function smMove(globalIdx, dir){
+  const m=_smData[globalIdx];
+  const cat=m.cat;
+  const samecat=_smData.filter(x=>x.cat===cat);
+  const localIdx=samecat.indexOf(m);
+  const targetLocal=localIdx+dir;
+  if(targetLocal<0||targetLocal>=samecat.length) return;
+  const target=samecat[targetLocal];
+  const tgIdx=_smData.indexOf(target);
+  /* Swap in array */
+  [_smData[globalIdx],_smData[tgIdx]]=[_smData[tgIdx],_smData[globalIdx]];
+  await dataSet('smData',_smData);
+  renderStaticGrids();
+  renderStaticMemberAdminList();
+}
+
+/* Delete static member */
+async function smDelete(globalIdx){
+  if(!confirm('এই সদস্যকে মুছে ফেলবেন?')) return;
+  _smData.splice(globalIdx,1);
+  await dataSet('smData',_smData);
+  renderStaticGrids();
+  renderStaticMemberAdminList();
+}
+
+/* Edit static member full info */
+function openSmEdit(globalIdx){
+  const m=_smData[globalIdx];
+  const pro=_profiles[m.key]||{};
+  document.getElementById('seIdx').value=globalIdx;
+  document.getElementById('seName').textContent=m.name;
+  document.getElementById('seNameEdit').value=m.name;
+  document.getElementById('seRoleEdit').value=m.role;
+  document.getElementById('seFbEdit').value=m.fb||'';
+  document.getElementById('sePhoto').value=pro.photo||m.photo||'';
+  document.getElementById('seBio').value=pro.bio||'';
+  document.getElementById('seEdu').value=pro.edu||'';
+  document.getElementById('seExp').value=pro.exp||'';
+  document.getElementById('seWeb').value=pro.web||'';
+  document.getElementById('seYt').value=pro.yt||'';
+  if(document.getElementById('sePhotoFile')) document.getElementById('sePhotoFile').value='';
   document.getElementById('staticEditModal').style.display='flex';
 }
 function closeStaticEdit(){ document.getElementById('staticEditModal').style.display='none'; }
 
 async function saveStaticEdit(){
-  const key=document.getElementById('seKey').value;
+  const idx=parseInt(document.getElementById('seIdx').value);
   let photo=document.getElementById('sePhoto').value.trim();
-  // Try upload
-  const fileInput=document.getElementById('sePhotoFile');
-  if(fileInput?.files?.length){
-    const sm=STATIC_MEMBERS.find(s=>s.key===key);
-    const uploaded=await uploadMemberPhoto(fileInput.files[0], sm?.name||key);
-    if(uploaded) photo=uploaded;
-  }
-  _staticProfiles[key]={
-    bio:document.getElementById('seBio').value.trim(),
+  const fi=document.getElementById('sePhotoFile');
+  if(fi?.files?.length){ const u=await uploadPhoto(fi.files[0],_smData[idx].name); if(u) photo=u; }
+  /* Update base data */
+  _smData[idx].name=document.getElementById('seNameEdit').value.trim()||_smData[idx].name;
+  _smData[idx].role=document.getElementById('seRoleEdit').value.trim()||_smData[idx].role;
+  _smData[idx].fb=document.getElementById('seFbEdit').value.trim();
+  /* Update profile extras */
+  _profiles[_smData[idx].key]={
+    photo, bio:document.getElementById('seBio').value.trim(),
     edu:document.getElementById('seEdu').value.trim(),
     exp:document.getElementById('seExp').value.trim(),
     web:document.getElementById('seWeb').value.trim(),
-    yt:document.getElementById('seYt').value.trim(),
-    photo
+    yt:document.getElementById('seYt').value.trim()
   };
-  await dataSet('staticProfiles', _staticProfiles);
-  wireProfileButtons();
+  await dataSet('smData',_smData);
+  await dataSet('smProfiles',_profiles);
+  renderStaticGrids();
+  renderStaticMemberAdminList();
   closeStaticEdit();
   showMsg('staticEditMsg');
 }
 
-/* ══════════════════════════════════════
-   PROFILE OVERLAY
-══════════════════════════════════════ */
-function showProfile(dataInput){
+/* ══════════ PROFILE OVERLAY ══════════ */
+function showProfile(d){
   try{
-    const data = typeof dataInput==='string' ? JSON.parse(dataInput) : dataInput;
+    const data=typeof d==='string'?JSON.parse(d):d;
     const em=data.emoji||'👤';
     document.getElementById('pAvatar').innerHTML=data.photo
-      ? `<img src="${data.photo}" alt="" onerror="this.parentNode.innerHTML='<span class=\\'fallback\\'>${em}</span>'">`
-      : `<span class="fallback">${em}</span>`;
+      ?`<img src="${data.photo}" alt="" onerror="this.parentNode.innerHTML='<span class=\\'fallback\\'>${em}</span>'">`
+      :`<span class="fallback">${em}</span>`;
     document.getElementById('pName').textContent=data.name||'';
     document.getElementById('pRole').textContent=data.role||'';
     document.getElementById('pOrg').textContent=data.org||'গুঞ্জরণ';
@@ -1392,7 +1376,6 @@ function showProfile(dataInput){
     document.getElementById('pEdu').textContent=data.edu||'';
     document.getElementById('pExpWrap').style.display=data.exp?'block':'none';
     document.getElementById('pExp').textContent=data.exp||'';
-    /* Social links with original logos */
     let soc='';
     if(data.fb) soc+=`<a href="${data.fb}" target="_blank" class="psoc-fb"><svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><path fill="white" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Facebook</a>`;
     if(data.yt)  soc+=`<a href="${data.yt}" target="_blank" class="psoc-yt"><svg viewBox="0 0 24 24" width="14" height="14" style="flex-shrink:0"><path fill="white" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> YouTube</a>`;
@@ -1401,7 +1384,7 @@ function showProfile(dataInput){
     document.getElementById('profileOverlay').classList.add('active');
     document.body.style.overflow='hidden';
     history.pushState({profile:true},'','#profile');
-  }catch(e){console.error('Profile error:',e);}
+  }catch(e){ console.error(e); }
 }
 function closeProfile(){
   document.getElementById('profileOverlay').classList.remove('active');
@@ -1415,13 +1398,15 @@ window.addEventListener('popstate',()=>{
   }
 });
 
-/* ══════════════════════════════════════
-   ADMIN PANEL
-══════════════════════════════════════ */
-function openAdmin(){
-  document.getElementById('adminOverlay').classList.add('active');
-  if(adminLoggedIn) _loadAdminData();
+/* ══════════ IMAGE UPLOAD ══════════ */
+async function uploadPhoto(file, name){
+  const ext=file.name.split('.').pop();
+  const path=`members/${name.replace(/\s+/g,'-')}-${Date.now()}.${ext}`;
+  return await sbUploadImage(file,path);
 }
+
+/* ══════════ ADMIN PANEL ══════════ */
+function openAdmin(){ document.getElementById('adminOverlay').classList.add('active'); if(adminLoggedIn) _loadAdminData(); }
 function closeAdmin(){ document.getElementById('adminOverlay').classList.remove('active'); }
 
 function adminLogin(){
@@ -1436,21 +1421,15 @@ function adminLogin(){
     setTimeout(()=>document.getElementById('adminLoginErr').style.display='none',2000);
   }
 }
-
 async function _loadAdminData(){
-  const d = await dataGet('stats') || DEF_STATS;
-  d.forEach((v,i)=>{ const el=document.getElementById('as'+i); if(el) el.value=v; });
-  renderYtAdminList();
-  renderTeamAdminList();
-  renderStaticMemberAdminList();
+  const d=await dataGet('stats')||DEF_STATS;
+  d.forEach((v,i)=>{const el=document.getElementById('as'+i);if(el)el.value=v;});
+  renderYtAdminList(); renderTeamAdminList(); renderStaticMemberAdminList();
 }
-
 function adminSwitchTab(i){
   document.querySelectorAll('.admin-tab').forEach((t,j)=>t.classList.toggle('active',i===j));
   document.querySelectorAll('.admin-section').forEach((s,j)=>s.classList.toggle('active',i===j));
 }
-
-/* Password change */
 function changeAdminPass(){
   const cur=document.getElementById('passOld').value;
   const n1=document.getElementById('passNew1').value;
@@ -1462,15 +1441,11 @@ function changeAdminPass(){
   ['passOld','passNew1','passNew2'].forEach(id=>document.getElementById(id).value='');
   showMsg('passMsg');
 }
+function showMsg(id){ const el=document.getElementById(id); if(el){el.style.display='block';setTimeout(()=>el.style.display='none',2500);} }
 
-function showMsg(id){ const el=document.getElementById(id); if(el){ el.style.display='block'; setTimeout(()=>el.style.display='none',2500); } }
-
-/* ══════════════════════════════════════
-   CONTACT FORM
-══════════════════════════════════════ */
+/* ══════════ CONTACT FORM ══════════ */
 function initContactForm(){
-  const form=document.querySelector('form');
-  if(!form) return;
+  const form=document.querySelector('form'); if(!form) return;
   form.addEventListener('submit',function(e){
     e.preventDefault();
     fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
@@ -1480,19 +1455,17 @@ function initContactForm(){
   });
 }
 
-/* ══════════════════════════════════════
-   INIT
-══════════════════════════════════════ */
+/* ══════════ INIT ══════════ */
 document.addEventListener('DOMContentLoaded', async ()=>{
-  // Overlay close on backdrop click
-  document.getElementById('adminOverlay').addEventListener('click',function(e){ if(e.target===this) closeAdmin(); });
-  document.getElementById('ytTabSel')?.addEventListener('change', renderYtAdminList);
-  // Load data
-  await loadStaticProfiles();
+  document.getElementById('adminOverlay').addEventListener('click',function(e){if(e.target===this)closeAdmin();});
+  document.getElementById('ytTabSel')?.addEventListener('change',renderYtAdminList);
+  /* Load all data */
+  await loadMemberData();
   await loadStats();
-  await renderYtSection();
+  /* Render static grids from JS (replaces HTML-hardcoded cards) */
+  renderStaticGrids();
   await renderCustomMembers();
-  setTimeout(wireProfileButtons, 150);
+  await renderYtSection();
   initContactForm();
 });
 </script>
